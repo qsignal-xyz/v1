@@ -300,8 +300,11 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
   border-radius: 50%; animation: aipSpin 0.8s linear infinite;
 }
 @keyframes aipSpin { to { transform: rotate(360deg); } }
-.aip-loading-text { font-size: 9px; color: var(--text); text-transform: uppercase; letter-spacing: .8px; }
-.aip-loading-sub { font-size: 8px; color: var(--text-dim); }
+.aip-inline-loading {
+  display: inline-block; width: 10px; height: 10px;
+  border: 1px solid var(--border); border-top-color: var(--accent);
+  border-radius: 50%; animation: aipSpin 0.8s linear infinite;
+}
 .ai-panel-btn, .ai-panel-link {
   border: 1px solid var(--border); background: transparent; color: var(--accent);
   cursor: pointer; font: inherit; font-size: 8px; text-transform: uppercase; letter-spacing: .6px;

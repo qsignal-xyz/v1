@@ -13,7 +13,8 @@ QSignal is a Mantle-focused signal desk that converts market, ecosystem, and liv
 
 **Walk-forward backtest (Jun 2024 – Jun 2026):** the model returned **3.33x** (Sharpe 1.50, CAGR +80.7%, max DD −23.1%) vs MNT buy-and-hold at 0.57x (−80.8% DD) and BTC at 0.97x (−51.2% DD). The edge comes from avoiding MNT drawdowns by rotating to stable yield during risk-off periods.
 
-![Backtest equity curve](https://i.gyazo.com/c7688475115eac0579fc87bdf7dd0a20.png)
+![Backtest equity curve](https://i.gyazo.com/89072f4c25d8e5be57ca2b46e71b6dab.png)
+*Source: [qsignal.xyz/backtest](https://qsignal.xyz/backtest)*
 
 Four surfaces:
 

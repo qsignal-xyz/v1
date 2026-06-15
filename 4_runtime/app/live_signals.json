@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-06-15T06:13:12+00:00",
+  "generated_at": "2026-06-15T06:26:18+00:00",
   "window": "24h",
   "state": {
-    "generated_at": "2026-06-15T06:13:12+00:00",
+    "generated_at": "2026-06-15T06:26:18+00:00",
     "mnt": {
-      "price": 0.5724,
-      "change_1h": -0.00017467248908298316,
-      "change_6h": 0.00827902060947694,
-      "change_24h": 0.03209520375045094,
-      "volume_last_hour_usd": 20104.79502,
-      "volume_ratio_vs_24h_median": 0.10694345103514706
+      "price": 0.5728,
+      "change_1h": 0.0005240174672489495,
+      "change_6h": 0.008983618108155733,
+      "change_24h": 0.032816444284168744,
+      "volume_last_hour_usd": 27975.01022,
+      "volume_ratio_vs_24h_median": 0.14880749257548553
     },
     "open_interest": {
       "latest": 65659695.2,
@@ -21,9 +21,9 @@
       "avg_24h": 3.295e-05
     },
     "market_context": {
-      "btc_change_24h": 0.024840564102723617,
-      "eth_change_24h": 0.026851846325552486,
-      "mnt_vs_btc_24h": 0.007254639647727323
+      "btc_change_24h": 0.0258661205332269,
+      "eth_change_24h": 0.027424813039767404,
+      "mnt_vs_btc_24h": 0.006950323750941845
     },
     "onchain": {
       "alerts_24h": 21,
@@ -39,25 +39,25 @@
   },
   "signals": [
     {
-      "id": "perp_market:mnt_price_momentum:2026-06-15:06:13:12",
-      "timestamp": "2026-06-15:06:13:12",
+      "id": "perp_market:mnt_price_momentum:2026-06-15:06:26:18",
+      "timestamp": "2026-06-15:06:26:18",
       "type": "perp_market",
       "severity": "low",
       "label": "MNT price momentum",
-      "value": "-0.02%",
-      "detail": "MNTUSDT perps trade at $0.5724; 1h -0.02%, 6h +0.83%, 24h +3.21%.",
+      "value": "+0.05%",
+      "detail": "MNTUSDT perps trade at $0.5728; 1h +0.05%, 6h +0.90%, 24h +3.28%.",
       "evidence": [
-        "price $0.5724",
-        "1h -0.02%",
-        "6h +0.83%",
-        "24h +3.21%"
+        "price $0.5728",
+        "1h +0.05%",
+        "6h +0.90%",
+        "24h +3.28%"
       ],
       "proposed_action": "Use as market context; daily model still controls allocation.",
       "source": "bybit/onchain-local"
     },
     {
-      "id": "perp_market:open_interest_shift:2026-06-15:06:13:12",
-      "timestamp": "2026-06-15:06:13:12",
+      "id": "perp_market:open_interest_shift:2026-06-15:06:26:18",
+      "timestamp": "2026-06-15:06:26:18",
       "type": "perp_market",
       "severity": "low",
       "label": "Open interest shift",
@@ -72,8 +72,8 @@
       "source": "bybit/onchain-local"
     },
     {
-      "id": "perp_market:funding_pressure:2026-06-15:06:13:12",
-      "timestamp": "2026-06-15:06:13:12",
+      "id": "perp_market:funding_pressure:2026-06-15:06:26:18",
+      "timestamp": "2026-06-15:06:26:18",
       "type": "perp_market",
       "severity": "low",
       "label": "Funding pressure",
@@ -87,24 +87,24 @@
       "source": "bybit/onchain-local"
     },
     {
-      "id": "market_context:mnt_vs_btc_beta_gap:2026-06-15:06:13:12",
-      "timestamp": "2026-06-15:06:13:12",
+      "id": "market_context:mnt_vs_btc_beta_gap:2026-06-15:06:26:18",
+      "timestamp": "2026-06-15:06:26:18",
       "type": "market_context",
       "severity": "low",
       "label": "MNT vs BTC beta gap",
-      "value": "+0.73%",
-      "detail": "BTC 24h +2.48%, ETH 24h +2.69%, MNT minus BTC +0.73%.",
+      "value": "+0.70%",
+      "detail": "BTC 24h +2.59%, ETH 24h +2.74%, MNT minus BTC +0.70%.",
       "evidence": [
-        "BTC +2.48%",
-        "ETH +2.69%",
-        "MNT-BTC +0.73%"
+        "BTC +2.59%",
+        "ETH +2.74%",
+        "MNT-BTC +0.70%"
       ],
       "proposed_action": "If MNT lags in a risk-on tape, wait for confirmation; if it outperforms with inflows, prefer long exposure.",
       "source": "bybit/onchain-local"
     },
     {
-      "id": "onchain_flow:24h_on-chain_flow:2026-06-15:06:13:12",
-      "timestamp": "2026-06-15:06:13:12",
+      "id": "onchain_flow:24h_on-chain_flow:2026-06-15:06:26:18",
+      "timestamp": "2026-06-15:06:26:18",
       "type": "onchain_flow",
       "severity": "medium",
       "label": "24h on-chain flow",

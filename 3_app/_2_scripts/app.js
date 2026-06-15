@@ -365,7 +365,7 @@ function renderAiStatus() {
   if (!el || !button) return;
   if (aiWorking) {
     button.disabled = true;
-    el.innerHTML = `<span class="busy">running across 3 models...</span>`;
+    el.innerHTML = `<span class="aip-inline-loading" aria-label="AI report loading"></span>`;
     return;
   }
   if (aiStatusMessage && (!aiStatusMessage.expires || aiStatusMessage.expires > Date.now())) {
@@ -472,10 +472,8 @@ async function runAiAnalyze() {
   if (el) {
     el.innerHTML =
       `<div class="aip-row"><button class="ai-panel-btn" type="button" disabled><img src="./_0_assets/qsignal-ai.svg" alt="" /><span>Ask AI</span></button></div>` +
-      `<div class="aip-loading">` +
+      `<div class="aip-loading" aria-label="AI report loading">` +
       `<div class="aip-loading-spinner"></div>` +
-      `<div class="aip-loading-text">Running across 3 models...</div>` +
-      `<div class="aip-loading-sub">Gemini · DeepSeek · Qwen</div>` +
       `</div>`;
   }
   try {

@@ -4,6 +4,10 @@ Mantle portfolio signals with live on-chain radar, walk-forward backtests, AI su
 
 QSignal watches MNT market structure, Mantle ecosystem data, bridge/token flows, and stable-yield routes. The hackathon version recommends either **long MNT** or **move to stable yield**.
 
+**Walk-forward backtest (Jun 2024 – Jun 2026):** Model returned **3.33x** (Sharpe 1.50, CAGR +80.7%, max DD −23.1%) vs MNT buy-and-hold at 0.57x and BTC at 0.97x.
+
+![Backtest equity curve](3_app/_0_assets/backtest24-26.png)
+
 ## Links
 
 - App: `https://qsignal.xyz`

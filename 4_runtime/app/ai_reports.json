@@ -1,6 +1,49 @@
 {
-  "generated_at": "2026-06-15T06:13:52+00:00",
+  "generated_at": "2026-06-15T06:27:14+00:00",
   "reports": [
+    {
+      "id": "ai:20260615062714",
+      "generated_at": "2026-06-15T06:27:14+00:00",
+      "timestamp": "2026-06-15:06:27:14",
+      "cooldown_until": "2026-06-15T06:28:14+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy: USDC on Aave-v3 at 5.72% APY",
+        "stance": "yield",
+        "confidence": 75.0,
+        "summary": "No fired directional edge. Best yield: USDC on aave-v3 at 5.72% APY.",
+        "why": [
+          "Active signal count is 0",
+          "Net score is neutral (0.0)",
+          "USDC on aave-v3 offers highest APY (5.72%)"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3",
+          "Monitor for new signals",
+          "Avoid directional trades"
+        ],
+        "risks": [
+          "Yield APY may fluctuate",
+          "No current directional edge",
+          "Potential TVL changes"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "net_score: 0.0",
+          "best_yield: USDC 5.72% APY"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 21,
+        "daily_days": 7
+      }
+    },
     {
       "id": "ai:20260615061352",
       "generated_at": "2026-06-15T06:13:52+00:00",
