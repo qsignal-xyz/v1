@@ -53,6 +53,7 @@ python3 5_send/_3_dispatch.py --kind live --dry-run
 ## Docs
 
 - [Build and hackathon requirements](docs/BUILD.md)
+- [DoraHacks BUIDL submission copy](docs/DORAHACKS_BUIDL.md)
 - [App/runtime](docs/app.md)
 - [Contracts](docs/contracts.md)
 - [On-chain cache](docs/onchain-cache.md)
