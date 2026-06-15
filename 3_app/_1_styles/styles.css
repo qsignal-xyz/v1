@@ -652,8 +652,10 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
 }
 .report-modal[hidden] { display: none; }
 .report-card {
-  width: min(520px, 100%); position: relative; padding: 20px; border: 1px solid var(--border);
-  background: var(--card);
+  width: min(520px, 100%); max-height: 50vh; position: relative; padding: 20px;
+  border: 1px solid var(--border); background: var(--card);
+  overflow-y: auto; overscroll-behavior: contain;
+  scrollbar-width: thin; scrollbar-color: var(--border) transparent;
 }
 .rc-close {
   position: absolute; top: 10px; right: 12px; width: 24px; height: 24px;
