@@ -620,14 +620,27 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
 /* ── FOOTER ── */
 .foot3 {
   position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center;
-  justify-content: flex-end; z-index: 20;
+  justify-content: center; z-index: 20;
   padding: 8px 16px; border-top: 1px solid var(--border); background: #141820;
   color: var(--text-dim); font-size: 9px; letter-spacing: 1px;
+}
+.foot3-socials {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.foot3-socials a {
+  width: 13px; height: 13px; display: inline-flex; align-items: center; justify-content: center;
+  color: var(--text-dim); text-decoration: none;
+}
+.foot3-socials a:hover { color: var(--accent); }
+.foot3-socials svg { width: 13px; height: 13px; display: block; }
+.foot3-block {
+  margin-left: auto; display: inline-flex; align-items: center; min-width: 178px; justify-content: flex-end;
 }
 .f3-dot { margin-right: 7px; width: 7px; height: 7px; }
 .f3-dot.pulse { animation: blockPulse .7s ease-out; }
 @keyframes blockPulse { to { transform: scale(1.45); box-shadow: 0 0 0 9px rgba(74,246,195,0); } }
-.f3-block { color: var(--text); font-weight: 600; }
+.f3-block-num { color: var(--text); font-weight: 600; }
 
 /* ── REPORT MODAL ── */
 .report-modal {
@@ -769,4 +782,7 @@ th:nth-child(5), td:nth-child(5) { text-align: right; }
   .live-page, .signals-page { width: auto; padding: 16px 16px 48px; }
   .radar-chart-grid { grid-template-columns: 1fr; }
   .ai-chart-panel { height: auto !important; max-height: none !important; }
+  .foot3 { justify-content: space-between; gap: 10px; }
+  .foot3-socials { position: static; transform: none; gap: 8px; }
+  .foot3-block { min-width: 0; margin-left: 0; }
 }
