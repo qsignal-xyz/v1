@@ -193,7 +193,7 @@ def main() -> None:
         *optional_notes,
         *unavailable,
     ]
-    coverage_mod.write_markdown(rows, ROOT / "0_data/_DATA_COVERAGE.md", notes)
+    coverage_mod.write_markdown(rows, ROOT / "0_data/_5_docs/_0_data_coverage.md", notes)
     coverage_mod.write_markdown(rows, ROOT / "0_data/cache/_coverage.md", notes)
     (raw / "unavailable_daily_sources.json").write_text(json.dumps(unavailable, indent=2))
     print(json.dumps({"processed": str(daily_path), "coverage": rows}, indent=2))

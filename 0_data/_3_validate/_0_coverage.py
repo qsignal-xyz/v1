@@ -87,6 +87,7 @@ def coverage_row(
 
 
 def write_markdown(rows: list[dict[str, object]], output: Path, notes: list[str]) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
     lines = [
         "# Data Coverage",
         "",

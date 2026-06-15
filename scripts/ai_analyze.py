@@ -23,7 +23,7 @@ KEYS = Path("/agents/shared/config/keys.env")
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 MODELS = ["google/gemini-2.5-flash", "deepseek/deepseek-chat-v3-0324", "qwen/qwen3-32b"]
 MERGE_MODEL = "deepseek/deepseek-chat-v3-0324"
-COOLDOWN_SECONDS = 3600
+COOLDOWN_SECONDS = int(os.environ.get("QSIGNAL_AI_COOLDOWN_SECONDS", "60"))
 
 
 def now_utc() -> datetime:
@@ -148,6 +148,9 @@ def context() -> dict[str, Any]:
         ["python3", str(ROOT / "scripts/generate_live_signals.py")],
         cwd=str(ROOT),
         check=False,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.PIPE,
+        text=True,
         timeout=45,
     )
     live = read_json(LIVE, {})

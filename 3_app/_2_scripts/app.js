@@ -11,7 +11,7 @@ let aiWorking = false;
 let aiStatusMessage = null;
 const LIVE_DATA_POLL_MS = 15_000;
 const TX_ACTIVITY_POLL_MS = 60_000;
-const COOLDOWN_SECONDS = 3600;
+const COOLDOWN_SECONDS = 60;
 
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
@@ -393,7 +393,7 @@ function renderAiChartPanel() {
   if (!el) return;
   const report = latestAiReport();
   const top =
-    `<div class="aip-row"><button class="ai-panel-btn" type="button" id="aiAnalyzeBtn"><img src="./assets/qsignal-ai.svg" alt="" /><span>Ask AI</span></button></div>` +
+    `<div class="aip-row"><button class="ai-panel-btn" type="button" id="aiAnalyzeBtn"><img src="./_0_assets/qsignal-ai.svg" alt="" /><span>Ask AI</span></button></div>` +
     `<div class="ai-status ai-status-panel" id="aiStatus"></div>`;
   if (!report) {
     el.innerHTML = top + `<div class="aip-empty">Summarize daily signal, live context, and 24h on-chain flow.</div>`;
@@ -471,7 +471,7 @@ async function runAiAnalyze() {
   const el = $("aiChartPanel");
   if (el) {
     el.innerHTML =
-      `<div class="aip-row"><button class="ai-panel-btn" type="button" disabled><img src="./assets/qsignal-ai.svg" alt="" /><span>Ask AI</span></button></div>` +
+      `<div class="aip-row"><button class="ai-panel-btn" type="button" disabled><img src="./_0_assets/qsignal-ai.svg" alt="" /><span>Ask AI</span></button></div>` +
       `<div class="aip-loading">` +
       `<div class="aip-loading-spinner"></div>` +
       `<div class="aip-loading-text">Running across 3 models...</div>` +
@@ -783,7 +783,7 @@ async function loadTxActivity() {
 let mntCandles = null;
 async function loadMntCandles() {
   try {
-    const r = await fetch(`./mnt_candles.json?v=${Date.now()}`);
+    const r = await fetch(`./_3_live/mnt_candles.json?v=${Date.now()}`);
     if (r.ok) mntCandles = await r.json();
   } catch (e) { console.warn("mnt_candles.json unavailable", e); }
 }

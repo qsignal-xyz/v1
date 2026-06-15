@@ -99,5 +99,7 @@ def write_coverage(
     lines.extend(["", "## Failed Chunks", ""])
     lines.extend([json.dumps(item, sort_keys=True) for item in failed] or ["- none"])
     text = "\n".join(lines) + "\n"
-    (root / "0_data/_INTRADAY_EVENTS.md").write_text(text)
+    docs = root / "0_data/_5_docs"
+    docs.mkdir(parents=True, exist_ok=True)
+    (docs / "_3_intraday_events.md").write_text(text)
     (cache / "_coverage.md").write_text(text)

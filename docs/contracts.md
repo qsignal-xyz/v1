@@ -9,7 +9,7 @@ report hash.
 
 Use the vanity deployment as the canonical QSignal ledger:
 
-- SignalLedger: `0x0000000c5c652995bdcAe8e78902414A00AF8983`
+- SignalLedger: [`0x0000000c5c652995bdcAe8e78902414A00AF8983`](https://mantlescan.xyz/address/0x0000000c5c652995bdcAe8e78902414A00AF8983#code) — source verified on Mantlescan
 - Owner/oracle: `0xaa116bf1647ba3c39579bd25d02172a8da6b42c0`
 - CREATE2 factory: `0x4e59b44847b379578588920cA78FbF26c0B4956C`
 - Salt: `0x92f256c2f4223c98ebf08d580abd859db36171e6dbb5c8bd801be1c472b39d96`

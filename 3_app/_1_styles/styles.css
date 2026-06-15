@@ -17,15 +17,15 @@ body {
 /* ── NAV ── */
 .nav3 {
   position: sticky; top: 0; z-index: 20;
-  height: 44px; padding: 0 20px; display: flex; align-items: center; gap: 10px;
+  height: 52px; padding: 0 20px; display: flex; align-items: center; gap: 10px;
   border-bottom: 1px solid var(--border); background: #141820;
 }
 .brand3 {
   display: inline-flex; align-items: center; justify-content: center;
-  width: 30px; height: 30px; color: var(--text); text-decoration: none; flex-shrink: 0;
+  width: 42px; height: 42px; color: var(--text); text-decoration: none; flex-shrink: 0;
 }
 .brand3:hover { color: var(--text); }
-.brand3-mark { width: 28px; height: 28px; display: block; }
+.brand3-mark { width: 39px; height: 39px; display: block; }
 .logo3 { font-weight: 700; font-size: 13px; letter-spacing: .2px; }
 .logo3 span { color: var(--accent); }
 .nav3-center { display: flex; gap: 0; }
@@ -52,7 +52,7 @@ main { min-height: calc(100vh - 80px); }
 body:not(.is-ready) main { display: none; }
 body.is-ready .app-loader { display: none; }
 .app-loader {
-  position: fixed; inset: 44px 0 28px; z-index: 8;
+  position: fixed; inset: 52px 0 28px; z-index: 8;
   background: var(--bg);
 }
 
@@ -475,7 +475,7 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
 .intra-ai-dot {
   position: absolute; width: 15px; height: 15px; z-index: 8; cursor: pointer;
   transform: translate(-50%, -50%); border-radius: 50%;
-  background: #172033 url("./assets/qsignal-ai.svg") center / 13px 13px no-repeat;
+  background: #172033 url("../_0_assets/qsignal-ai.svg") center / 13px 13px no-repeat;
   border: 1px solid var(--accent);
   box-shadow: 0 0 0 2px rgba(41,98,255,.18), 0 0 14px rgba(41,98,255,.35);
 }

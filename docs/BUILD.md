@@ -67,11 +67,14 @@ QSignal uses Mantle in three places:
 2. Mantle RPC live token/bridge/yield-pool monitoring.
 3. A Mantle mainnet `SignalLedger` contract for public report-hash commitments.
 
-Canonical ledger:
+Canonical verified ledger:
 
 ```text
 0x0000000c5c652995bdcAe8e78902414A00AF8983
 ```
+
+Source: `SignalLedger`, verified on Mantlescan:
+`https://mantlescan.xyz/address/0x0000000c5c652995bdcAe8e78902414A00AF8983#code`
 
 ## Hackathon Requirements Mapping
 
@@ -84,7 +87,7 @@ Canonical ledger:
 | Backtest evidence | `/backtest` shows replay, benchmarks, Sharpe, CAGR, max drawdown, equity curves, and assumptions. |
 | AI usefulness | AI summarizes actual signal state and live data into an actionable report; it is not the source of raw signals. |
 | User experience | Live radar, daily report table, backtest, docs tab, Telegram/Discord delivery, and social links are shipped. |
-| On-chain component | Signal report hashes can be committed to the Mantle `SignalLedger`. |
+| On-chain component | Signal report hashes can be committed to the verified Mantle `SignalLedger`. |
 | Openness | Source includes data builders, signal rules, backtest code, app, notification sender, contract, and docs. |
 
 ## What Is Intentionally Not Claimed
@@ -101,4 +104,4 @@ Canonical ledger:
 - `/backtest`: MNT/BTC/model comparison
 - `/docs`: product explanation
 - Telegram/Discord: daily report and live alert delivery
-- Mantlescan: SignalLedger address above
+- Mantlescan: verified SignalLedger address above

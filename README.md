@@ -10,7 +10,7 @@ QSignal watches MNT market structure, Mantle ecosystem data, bridge/token flows,
 - Telegram: `https://t.me/qsignal_xyz`
 - Discord: `https://discord.gg/hgAfJXnKtw`
 - GitHub org: `https://github.com/qsignal-xyz`
-- Contract: `0x0000000c5c652995bdcAe8e78902414A00AF8983`
+- Verified contract: [`0x0000000c5c652995bdcAe8e78902414A00AF8983`](https://mantlescan.xyz/address/0x0000000c5c652995bdcAe8e78902414A00AF8983#code)
 
 ## Structure
 

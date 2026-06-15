@@ -19,6 +19,40 @@ GENERATED_PAYLOADS = {
 }
 
 
+def parse_script_json(stdout: str) -> dict:
+    clean = stdout.strip()
+    if not clean:
+        raise json.JSONDecodeError("empty stdout", stdout, 0)
+    try:
+        payload = json.loads(clean)
+        if isinstance(payload, dict):
+            return payload
+    except json.JSONDecodeError:
+        pass
+
+    decoder = json.JSONDecoder()
+    objects: list[dict] = []
+    index = 0
+    while True:
+        start = clean.find("{", index)
+        if start < 0:
+            break
+        try:
+            payload, end = decoder.raw_decode(clean[start:])
+        except json.JSONDecodeError:
+            index = start + 1
+            continue
+        if isinstance(payload, dict):
+            objects.append(payload)
+        index = start + max(end, 1)
+    for payload in reversed(objects):
+        if "status" in payload:
+            return payload
+    if objects:
+        return objects[-1]
+    raise json.JSONDecodeError("no JSON object in stdout", stdout, 0)
+
+
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, directory=str(APP), **kwargs)
@@ -81,11 +115,11 @@ class Handler(SimpleHTTPRequestHandler):
             cmd = ["python3", str(ROOT / "scripts/ai_analyze.py")]
             if body.get("force"):
                 cmd.append("--force")
-            result = subprocess.run(cmd, cwd=str(ROOT), text=True, capture_output=True, timeout=180)
+            result = subprocess.run(cmd, cwd=str(ROOT), text=True, capture_output=True, timeout=300)
             if result.returncode != 0:
                 self.send_json(500, {"status": "error", "stderr": result.stderr[-2000:], "stdout": result.stdout[-2000:]})
                 return
-            self.send_json(200, json.loads(result.stdout))
+            self.send_json(200, parse_script_json(result.stdout))
         except subprocess.TimeoutExpired:
             self.send_json(504, {"status": "error", "error": "AI analyst timed out"})
         except Exception as exc:

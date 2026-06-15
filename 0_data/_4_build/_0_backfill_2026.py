@@ -144,7 +144,7 @@ def main() -> None:
         "Bybit does not provide Mantle on-chain data; DEX/TVL/bridge/whale data must come from DefiLlama, GeckoTerminal, RPC, or explorer APIs.",
         "Historical orderbook depth and liquidation history are not included in this no-key MVP.",
     ]
-    coverage_mod.write_markdown(rows, ROOT / "0_data/_DATA_COVERAGE.md", notes)
+    coverage_mod.write_markdown(rows, ROOT / "0_data/_5_docs/_0_data_coverage.md", notes)
     coverage_mod.write_markdown(rows, ROOT / "0_data/cache/_coverage.md", notes)
     print(json.dumps({"processed": str(hourly_path), "coverage": rows}, indent=2))
 

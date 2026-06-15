@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fetch 25h of MNT/USDT 1h candles from Bybit and save to mnt_candles.json."""
+"""Fetch 25h of MNT/USDT 1h candles from Bybit and save to this folder."""
 
 import json
 import urllib.request
