@@ -1,0 +1,74 @@
+.bt-top { display: flex; justify-content: flex-end; margin-bottom: 8px; }
+.lev-row {
+  display: grid; grid-template-columns: auto 170px; gap: 12px; align-items: start;
+  color: var(--text-med); font-size: 11px;
+}
+.lev-row b { color: var(--text); }
+.lev-control { display: grid; gap: 4px; }
+.lev-row input { accent-color: var(--accent); width: 170px; margin: 0; }
+.lev-scale { display: flex; justify-content: space-between; color: var(--text-dim); font-size: 9px; }
+.chart-head-right { display: none; }
+.chart-overlay {
+  position: absolute; top: 8px; right: 12px; z-index: 2;
+  display: flex; flex-direction: column; align-items: flex-end; gap: 4px;
+}
+.log-toggle { display: flex; align-items: center; gap: 5px; color: var(--text-med); font-size: 11px; cursor: pointer; }
+.log-toggle input { width: 13px; height: 13px; }
+.chart-overlay .chart-range { color: var(--text-dim); font-size: 11px; }
+.bt-table { margin-bottom: 20px; }
+.bt-table table { min-width: 860px; table-layout: auto; }
+.bt-table th:nth-child(n), .bt-table td:nth-child(n) { text-align: right; }
+.bt-table th:first-child, .bt-table td:first-child { width: 34%; text-align: left; }
+.bt-mode { display: flex; align-items: center; gap: 10px; font-weight: 700; white-space: nowrap; }
+.bt-mode i { width: 18px; height: 2px; background: currentColor; }
+.bt-mnt { color: var(--pos); } .bt-btc { color: #f7931a; } .bt-model { color: var(--accent); }
+.bt-chart-card { border-top: 1px solid var(--border); padding-top: 16px; }
+.bt-chart-head { display: flex; align-items: end; justify-content: space-between; margin-bottom: 10px; }
+.bt-chart-head h3 { margin: 0; font-size: 13px; font-weight: 700; }
+.bt-chart-head p { margin: 2px 0 0; color: var(--text-dim); font-size: 11px; }
+.tv-chart { position: relative; border: 1px solid var(--border); background: var(--mantle); overflow: hidden; }
+.tv-chart svg { display: block; width: 100%; height: auto; }
+.grid { stroke: var(--border); stroke-width: 1; }
+.equity-axis, .date-axis, .right-label, .hover-text { fill: var(--text-med); font: 11px "IBM Plex Mono", monospace; }
+.axis-label { fill: var(--text); font-weight: 700; }
+.date-axis { fill: var(--text-dim); }
+.line { fill: none; stroke-width: 2; vector-effect: non-scaling-stroke; }
+.line.mnt { stroke: var(--pos); stroke-width: 1.6; }
+.line.btc_hold, .line.btc { stroke: #f7931a; stroke-width: 1.4; }
+.line.model { stroke: var(--accent); stroke-width: 2.2; }
+.right-label.bt-mnt { fill: var(--pos); } .right-label.bt-btc { fill: #f7931a; }
+.right-label.bt-model { fill: var(--accent); }
+.hover-line { stroke: rgba(255,255,255,.28); stroke-width: 1; opacity: 0; }
+.hover-dot { opacity: 0; }
+.hover-dot.mnt { fill: var(--pos); } .hover-dot.btc { fill: #f7931a; }
+.hover-dot.model { fill: var(--accent); }
+.liq-line { stroke: var(--neg); stroke-width: 1; stroke-dasharray: 4 4; }
+.liq-text { fill: var(--neg); font: 11px "IBM Plex Mono", monospace; }
+.liquidated td { background: rgba(255,69,58,.035); }
+.bt-mode b { margin-left: 8px; color: var(--neg); font-size: 10px; }
+.bt-tip { position: relative; cursor: help; }
+.bt-tip::after {
+  content: attr(data-tip); position: absolute; right: 0; bottom: calc(100% + 8px); width: 220px;
+  padding: 8px 10px; border: 1px solid var(--border); background: var(--card);
+  color: var(--text-med); font-size: 11px; line-height: 1.35; text-transform: none; letter-spacing: 0;
+  opacity: 0; pointer-events: none;
+}
+.bt-tip:hover::after { opacity: 1; }
+.tv-chart.on .hover-line, .tv-chart.on .hover-dot { opacity: 1; }
+.chart-tip {
+  position: absolute; min-width: 200px; padding: 10px; border: 1px solid var(--border);
+  background: var(--card); color: var(--text); pointer-events: none; opacity: 0;
+  transform: translate(12px, 12px);
+}
+.tv-chart.on .chart-tip { opacity: 1; }
+.tip-date { color: var(--text); font-weight: 700; margin-bottom: 6px; font-size: 13px; }
+.tip-row { display: flex; justify-content: space-between; gap: 16px; color: var(--text-med); font-size: 11px; line-height: 1.7; }
+.tip-row b { color: var(--text); font-weight: 700; }
+.bt-method {
+  margin-top: 12px; padding: 10px 0 0; border-top: 1px solid var(--border);
+  color: var(--text-dim); font-size: 11px; line-height: 1.5;
+}
+@media (max-width: 720px) {
+  .bt-table { overflow-x: auto; }
+  .bt-chart-head { display: block; }
+}

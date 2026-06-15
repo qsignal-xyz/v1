@@ -1,0 +1,123 @@
+{
+  "generated_at": "2026-06-15T04:22:10+00:00",
+  "window": "24h",
+  "state": {
+    "generated_at": "2026-06-15T04:22:10+00:00",
+    "mnt": {
+      "price": 0.5708,
+      "change_1h": 0.0022827041264266157,
+      "change_6h": 0.007590467784642563,
+      "change_24h": 0.02883922134102379,
+      "volume_last_hour_usd": 56430.42633,
+      "volume_ratio_vs_24h_median": 0.31932992039823976
+    },
+    "open_interest": {
+      "latest": 65585687.0,
+      "change_6h": 0.00645562742678174,
+      "change_24h": 0.03136640068998875
+    },
+    "funding": {
+      "latest": 0.0001,
+      "avg_24h": 3.295e-05
+    },
+    "market_context": {
+      "btc_change_24h": 0.02206874887253596,
+      "eth_change_24h": 0.024834535805855484,
+      "mnt_vs_btc_24h": 0.0067704724684878315
+    },
+    "onchain": {
+      "alerts_24h": 24,
+      "net_flow_usd": 30411931.622439995,
+      "inflow_usd": 38369587.651581995,
+      "outflow_usd": 7957656.029142,
+      "types": {
+        "stableTransfer": 20,
+        "bridgeOut": 3,
+        "bridgeIn": 1
+      }
+    }
+  },
+  "signals": [
+    {
+      "id": "perp_market:mnt_price_momentum:2026-06-15:04:22:10",
+      "timestamp": "2026-06-15:04:22:10",
+      "type": "perp_market",
+      "severity": "low",
+      "label": "MNT price momentum",
+      "value": "+0.23%",
+      "detail": "MNTUSDT perps trade at $0.5708; 1h +0.23%, 6h +0.76%, 24h +2.88%.",
+      "evidence": [
+        "price $0.5708",
+        "1h +0.23%",
+        "6h +0.76%",
+        "24h +2.88%"
+      ],
+      "proposed_action": "Use as market context; daily model still controls allocation.",
+      "source": "bybit/onchain-local"
+    },
+    {
+      "id": "perp_market:open_interest_shift:2026-06-15:04:22:10",
+      "timestamp": "2026-06-15:04:22:10",
+      "type": "perp_market",
+      "severity": "low",
+      "label": "Open interest shift",
+      "value": "+0.65%",
+      "detail": "MNT open interest changed +0.65% over 6h and +3.14% over 24h.",
+      "evidence": [
+        "OI 65585687",
+        "6h +0.65%",
+        "24h +3.14%"
+      ],
+      "proposed_action": "Rising OI confirms leverage entering; falling OI means price moves may be less durable.",
+      "source": "bybit/onchain-local"
+    },
+    {
+      "id": "perp_market:funding_pressure:2026-06-15:04:22:10",
+      "timestamp": "2026-06-15:04:22:10",
+      "type": "perp_market",
+      "severity": "low",
+      "label": "Funding pressure",
+      "value": "+0.01%",
+      "detail": "Latest 8h MNT funding is +0.01%; recent 24h average is +0.00%.",
+      "evidence": [
+        "latest +0.01%",
+        "24h avg +0.00%"
+      ],
+      "proposed_action": "Crowded positive funding weakens new longs; negative funding can support contrarian longs if daily signal agrees.",
+      "source": "bybit/onchain-local"
+    },
+    {
+      "id": "market_context:mnt_vs_btc_beta_gap:2026-06-15:04:22:10",
+      "timestamp": "2026-06-15:04:22:10",
+      "type": "market_context",
+      "severity": "low",
+      "label": "MNT vs BTC beta gap",
+      "value": "+0.68%",
+      "detail": "BTC 24h +2.21%, ETH 24h +2.48%, MNT minus BTC +0.68%.",
+      "evidence": [
+        "BTC +2.21%",
+        "ETH +2.48%",
+        "MNT-BTC +0.68%"
+      ],
+      "proposed_action": "If MNT lags in a risk-on tape, wait for confirmation; if it outperforms with inflows, prefer long exposure.",
+      "source": "bybit/onchain-local"
+    },
+    {
+      "id": "onchain_flow:24h_on-chain_flow:2026-06-15:04:22:10",
+      "timestamp": "2026-06-15:04:22:10",
+      "type": "onchain_flow",
+      "severity": "medium",
+      "label": "24h on-chain flow",
+      "value": "+$30.41M",
+      "detail": "24 on-chain alerts; inflows +$38.37M, outflows -$7.96M.",
+      "evidence": [
+        "alerts 24",
+        "inflows +$38.37M",
+        "outflows -$7.96M"
+      ],
+      "proposed_action": "Use as confirmation or warning around the daily signal.",
+      "source": "bybit/onchain-local"
+    }
+  ],
+  "errors": []
+}

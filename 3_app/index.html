@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QSignal</title>
+    <base href="/" />
+    <link rel="icon" type="image/svg+xml" href="./assets/qsignal-mark.svg" />
+    <link rel="shortcut icon" href="./assets/qsignal-mark.svg" />
+    <meta name="theme-color" content="#0f1219" />
+    <style>
+      @font-face { font-family: 'JetBrains Mono'; font-weight: 400; font-display: swap; src: url('./assets/fonts/JetBrainsMono-Regular.woff2') format('woff2'); }
+      @font-face { font-family: 'JetBrains Mono'; font-weight: 500; font-display: swap; src: url('./assets/fonts/JetBrainsMono-Medium.woff2') format('woff2'); }
+      @font-face { font-family: 'JetBrains Mono'; font-weight: 600; font-display: swap; src: url('./assets/fonts/JetBrainsMono-SemiBold.woff2') format('woff2'); }
+      @font-face { font-family: 'JetBrains Mono'; font-weight: 700; font-display: swap; src: url('./assets/fonts/JetBrainsMono-Bold.woff2') format('woff2'); }
+    </style>
+    <link rel="stylesheet" href="./styles.css?v=181" />
+    <link rel="stylesheet" href="./chart.css?v=50" />
+  </head>
+  <body>
+    <nav class="nav3">
+      <a class="brand3" href="/live" data-view="live" aria-label="QSignal home">
+        <img class="brand3-mark" src="./assets/qsignal-mark.svg" alt="" />
+      </a>
+      <div class="nav3-center">
+        <a class="on" href="/live" data-view="live">Live</a>
+        <a href="/reports" data-view="signals">Reports</a>
+        <a href="/backtest" data-view="backtest">Backtest</a>
+      </div>
+      <button class="nav-burger" id="burger" aria-label="Menu">☰</button>
+      <div class="clock3" id="clock">--</div>
+    </nav>
+
+    <div class="app-loader" id="appLoader" aria-hidden="true"></div>
+
+    <main>
+      <section class="view active" id="liveView">
+        <div class="live-page">
+          <div class="brief-section radar-section">
+            <div class="sec-label">Live Signal Radar · 24h</div>
+            <div class="live-signals" id="liveSignals"></div>
+            <div class="radar-chart-grid">
+              <div class="intra-chart-wrap">
+                <div class="intra-chart-head">
+                  <div class="intra-filter" id="intraFilter">
+                    <button class="active" type="button" data-severity="all">All</button>
+                    <button type="button" data-severity="high">Critical</button>
+                    <button type="button" data-severity="medium">Medium</button>
+                    <button type="button" data-severity="low">Low</button>
+                  </div>
+                </div>
+                <div class="intra-chart-body">
+                  <div class="intra-y-flow" id="intraFlowScale"></div>
+                  <div class="intra-chart" id="intraChart"></div>
+                  <div class="intra-y-scale" id="intraScale"></div>
+                </div>
+                <div class="intra-activity" id="intraActivity"></div>
+                <div class="intra-x-row" id="intraXAxis"></div>
+                <div class="intra-legend" id="intraLegend"></div>
+              </div>
+              <aside class="ai-chart-panel" id="aiChartPanel"></aside>
+            </div>
+            <div class="intra-events" id="intraEvents"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="signalsView">
+        <div class="signals-page">
+          <div class="brief">
+          <div class="brief-header"><span class="brief-class">Daily Signal Briefing</span><span class="brief-date" id="signalDate">--</span></div>
+          <div class="brief-section"><div class="sec-label">1. Signal Identification</div><h1 id="signalTitle">Loading<br/><span>signal</span></h1></div>
+          <div class="brief-section"><div class="sec-label">2. Assessment</div><div class="brief-body" id="signalText">Pulling latest Mantle context.</div></div>
+          <div class="brief-section"><div class="sec-label">3. Signal Metrics</div><div class="brief-grid" id="metrics"></div></div>
+          <div class="brief-section"><div class="sec-label">4. Recommendation</div><div class="brief-reco" id="signalPill"></div></div>
+          <div class="brief-section"><div class="sec-label">5. Strategy Context</div><div class="brief-strat" id="btTeaser"></div></div>
+          </div>
+          <div class="signals-history">
+            <div class="sec-label">6. Past Daily Reports</div>
+            <div class="past-table"><table><thead><tr><th>Date</th><th>Signal</th><th>Action</th><th>Score</th><th class="r">1d Result</th><th>Report</th></tr></thead><tbody id="pastRows"></tbody></table></div>
+            <div class="pager" id="pastPager"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="view panel-view" id="backtestView">
+        <div class="panel-head"><h2>Backtest</h2><span>walk-forward 1d replay</span></div>
+        <div id="btCards"></div>
+        <div class="bt-chart-card">
+          <div class="bt-chart-head">
+            <div>
+              <h3>Strategy Equity</h3>
+              <p>Hover the chart for date, position, yield, funding, and curve value.</p>
+            </div>
+            <div class="chart-head-right">
+              <label class="log-toggle"><input id="scaleToggle" type="checkbox" checked /> Log</label>
+              <span id="btRange">loading</span>
+            </div>
+          </div>
+          <div id="btChart"></div>
+          <p class="bt-method" id="btMethod"></p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot3">
+      <span class="f3-dot" id="blockDot"></span>
+      <span>Mantle &middot; </span><span class="f3-block" id="blockNumber">#96,653,761</span>
+    </footer>
+
+    <div class="report-modal" id="modal" hidden>
+      <section class="report-card">
+        <button class="rc-close" id="closeModal">x</button>
+        <div class="rc-label" id="modalLabel">Daily AI Report</div>
+        <div id="detail"></div>
+      </section>
+    </div>
+
+    <script src="./data.js?v=14"></script>
+    <script src="./app.js?v=181"></script>
+    <script src="./chart.js?v=9"></script>
+    <script src="./history.js?v=137"></script>
+  </body>
+</html>

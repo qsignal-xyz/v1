@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: qsignal
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: bash scripts/render_start.sh
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.4
+      - key: QSIGNAL_APP_URL
+        value: https://qsignal.xyz
+      - key: QSIGNAL_LEDGER_ADDRESS
+        value: 0x0000000c5c652995bdcAe8e78902414A00AF8983
+      - key: QSIGNAL_RENDER_REFRESH_SECONDS
+        value: "300"

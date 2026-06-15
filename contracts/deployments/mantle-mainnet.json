@@ -1,0 +1,30 @@
+{
+  "network": "mantle-mainnet",
+  "chain_id": 5000,
+  "rpc_url": "https://rpc.mantle.xyz",
+  "contract": "SignalLedger",
+  "source": "contracts/src/SignalLedger.sol",
+  "deployer": "0xaa116bf1647ba3c39579bd25d02172a8da6b42c0",
+  "owner": "0xaa116bf1647ba3c39579bd25d02172a8da6b42c0",
+  "oracle": "0xaa116bf1647ba3c39579bd25d02172a8da6b42c0",
+  "deployments": {
+    "regular": {
+      "address": "0xA6cCd635A593eA2Ea1EB16c826C8f4C23a84DAB4",
+      "transaction_hash": "0xcea123052e68aee99f22ad795739e71f92394fc8b3ba221905338ca7c7ecd18b",
+      "block_number": 96682375,
+      "deployed_at_utc": "2026-06-15T03:44:22Z",
+      "method": "CREATE"
+    },
+    "vanity": {
+      "address": "0x0000000c5c652995bdcAe8e78902414A00AF8983",
+      "transaction_hash": "0x1bad0bdde0ce71bc82dd7fccee568a70f6a46e3b7914b4fdfe8cda5aff2f54d2",
+      "block_number": 96682444,
+      "deployed_at_utc": "2026-06-15T03:46:40Z",
+      "method": "CREATE2",
+      "factory": "0x4e59b44847b379578588920cA78FbF26c0B4956C",
+      "salt": "0x92f256c2f4223c98ebf08d580abd859db36171e6dbb5c8bd801be1c472b39d96",
+      "init_code_hash": "0xd95eabaa85219922cf6eb654ee40039dadd8e4997a3687c80c063c3572a2e23d",
+      "prefix": "0x0000000"
+    }
+  }
+}

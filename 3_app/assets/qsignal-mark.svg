@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">QSignal mark</title>
+  <desc id="desc">A Q-shaped signal mark for QSignal.</desc>
+  <rect width="64" height="64" rx="14" fill="#0f1219"/>
+  <circle cx="30" cy="29" r="17" fill="none" stroke="#4AF6C3" stroke-width="7" stroke-linecap="round"/>
+  <path d="M41 41l10 10" fill="none" stroke="#2962FF" stroke-width="7" stroke-linecap="round"/>
+  <path d="M18 30h7l4-7 5 15 4-8h8" fill="none" stroke="#F7F9FF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

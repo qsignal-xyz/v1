@@ -1,0 +1,7 @@
+bybit:
+  base_url: "https://api.bybit.com"
+  symbol: "MNTUSDT"
+  user_agent: "Mozilla/5.0 (compatible; research-script; +local-analysis)"
+  start: "2023-11-04T00:00:00Z"
+  interval: "60"
+  request_delay_seconds: 0.25

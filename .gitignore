@@ -1,0 +1,49 @@
+.env
+.env.*
+!.env.example
+
+# Python/local tooling
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+
+# JavaScript tooling
+node_modules/
+dist/
+coverage/
+
+# Foundry/Solidity build outputs
+lib/
+contracts/cache/
+contracts/out/
+broadcast/
+
+# Generated data/cache outputs
+0_data/cache/
+1_signal/cache/
+2_backtest/cache/
+4_runtime/app/*.json
+!4_runtime/app/ai_reports.json
+!4_runtime/app/history_backtest.json
+!4_runtime/app/intraday_events.json
+!4_runtime/app/live_signals.json
+!4_runtime/app/tx_activity.json
+4_runtime/send/
+logs/
+*.log
+
+# Local UI iteration artifacts
+3_app/_screenshot_*.png
+3_app/designs*/
+3_app/layout/
+3_app/signal-preview/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db

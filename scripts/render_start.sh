@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$ROOT"
+
+python3 scripts/fetch_tx_activity.py || echo "initial tx activity refresh failed"
+python3 scripts/generate_live_signals.py || echo "initial live signal refresh failed"
+
+scripts/render_refresh_loop.sh &
+exec python3 scripts/server.py

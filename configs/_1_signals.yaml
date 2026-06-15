@@ -1,0 +1,4 @@
+signals:
+  - name: "perp_flow_divergence"
+    status: "placeholder"
+

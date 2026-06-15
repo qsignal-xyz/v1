@@ -1,0 +1,13 @@
+[project]
+name = "qsignal"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+  "pandas",
+  "pyarrow",
+  "requests",
+  "pyyaml",
+]
+
+[tool.ruff]
+line-length = 100
