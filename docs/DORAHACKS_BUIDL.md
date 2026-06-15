@@ -11,6 +11,10 @@ QSignal is a Mantle-focused signal desk that converts market, ecosystem, and liv
 - **Long MNT** when a walk-forward-validated positive edge is active.
 - **Stable yield** when no validated long edge exists or risk-off conditions dominate.
 
+**Walk-forward backtest (Jun 2024 – Jun 2026):** the model returned **3.33x** (Sharpe 1.50, CAGR +80.7%, max DD −23.1%) vs MNT buy-and-hold at 0.57x (−80.8% DD) and BTC at 0.97x (−51.2% DD). The edge comes from avoiding MNT drawdowns by rotating to stable yield during risk-off periods.
+
+![Backtest equity curve](https://i.gyazo.com/c7688475115eac0579fc87bdf7dd0a20.png)
+
 Four surfaces:
 
 - **Live** — 24h signal radar with MNT price line, on-chain flow candles, event table, and multi-model AI analyst panel.
