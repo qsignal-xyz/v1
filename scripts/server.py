@@ -49,7 +49,23 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_runtime_file(APP_DATA / name)
             return
         local = APP / path.lstrip("/")
-        is_route = path in {"/", "/signal", "/signal/", "/signals", "/signals/", "/past-signals", "/past-signals/", "/backtest", "/backtest/"}
+        is_route = path in {
+            "/",
+            "/live",
+            "/live/",
+            "/signal",
+            "/signal/",
+            "/signals",
+            "/signals/",
+            "/reports",
+            "/reports/",
+            "/past-signals",
+            "/past-signals/",
+            "/backtest",
+            "/backtest/",
+            "/docs",
+            "/docs/",
+        }
         if is_route or (not local.exists() and "." not in Path(path).name):
             self.path = "/index.html"
         super().do_GET()

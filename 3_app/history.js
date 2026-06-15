@@ -1,8 +1,8 @@
 let historyData = null;
 let pastPage = 0;
 const PAST_PAGE_SIZE = 30;
-const routeByView = { live: "/live", signals: "/reports", backtest: "/backtest" };
-const viewByRoute = { "/": "live", "/live": "live", "/live-signal": "live", "/live-signals": "live", "/signal": "signals", "/signals": "signals", "/reports": "signals", "/singal": "signals", "/past-signal": "signals", "/past-signals": "signals", "/backtest": "backtest" };
+const routeByView = { live: "/live", signals: "/reports", backtest: "/backtest", docs: "/docs" };
+const viewByRoute = { "/": "live", "/live": "live", "/live-signal": "live", "/live-signals": "live", "/signal": "signals", "/signals": "signals", "/reports": "signals", "/singal": "signals", "/past-signal": "signals", "/past-signals": "signals", "/backtest": "backtest", "/docs": "docs" };
 
 function fmtPct(value) {
   if (value === null || value === undefined || Number.isNaN(Number(value))) return "-";

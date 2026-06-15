@@ -14,7 +14,7 @@
       @font-face { font-family: 'JetBrains Mono'; font-weight: 600; font-display: swap; src: url('./assets/fonts/JetBrainsMono-SemiBold.woff2') format('woff2'); }
       @font-face { font-family: 'JetBrains Mono'; font-weight: 700; font-display: swap; src: url('./assets/fonts/JetBrainsMono-Bold.woff2') format('woff2'); }
     </style>
-    <link rel="stylesheet" href="./styles.css?v=182" />
+    <link rel="stylesheet" href="./styles.css?v=183" />
     <link rel="stylesheet" href="./chart.css?v=50" />
   </head>
   <body>
@@ -26,6 +26,7 @@
         <a class="on" href="/live" data-view="live">Live</a>
         <a href="/reports" data-view="signals">Reports</a>
         <a href="/backtest" data-view="backtest">Backtest</a>
+        <a href="/docs" data-view="docs">Docs</a>
       </div>
       <button class="nav-burger" id="burger" aria-label="Menu">☰</button>
       <div class="clock3" id="clock">--</div>
@@ -101,6 +102,41 @@
           <p class="bt-method" id="btMethod"></p>
         </div>
       </section>
+
+      <section class="view panel-view docs-view" id="docsView">
+        <div class="panel-head"><h2>Docs</h2><span>how QSignal works</span></div>
+        <div class="docs-grid">
+          <section class="doc-card">
+            <div class="sec-label">1. What It Is</div>
+            <p>QSignal is a Mantle portfolio signal system. It combines daily MNT market data, Mantle ecosystem data, and live on-chain flow alerts into long/yield recommendations.</p>
+          </section>
+          <section class="doc-card">
+            <div class="sec-label">2. Data</div>
+            <p>Daily data comes from Bybit, DeFiLlama, CoinGecko, and BTC benchmarks. Live data comes from Mantle RPC token and bridge activity, plus Bybit market context.</p>
+          </section>
+          <section class="doc-card">
+            <div class="sec-label">3. Signal Engine</div>
+            <p>Rules fire only after they pass walk-forward health checks. The app avoids short recommendations for the hackathon version: positive signals go long MNT, otherwise capital moves to stable yield.</p>
+          </section>
+          <section class="doc-card">
+            <div class="sec-label">4. AI Analyst</div>
+            <p>The AI button summarizes the latest daily report, live market state, and 24h on-chain flow. It is server-side, cooldown-limited, and never exposes model keys to the browser.</p>
+          </section>
+          <section class="doc-card">
+            <div class="sec-label">5. On-Chain Proof</div>
+            <p>Daily report hashes can be committed to the QSignal SignalLedger on Mantle, giving users a public timestamp for the signal without publishing private infrastructure keys.</p>
+          </section>
+          <section class="doc-card">
+            <div class="sec-label">6. Notifications</div>
+            <p>Daily reports and important live alerts can publish to Telegram and Discord. Delivery is deduped so the same report or alert is not posted twice by one runtime.</p>
+          </section>
+        </div>
+        <div class="doc-links">
+          <a href="https://github.com/qsignal-xyz/v1" target="_blank" rel="noopener">source</a>
+          <a href="https://mantlescan.xyz/address/0x0000000c5c652995bdcAe8e78902414A00AF8983" target="_blank" rel="noopener">ledger</a>
+          <a href="https://t.me/qsignal_xyz" target="_blank" rel="noopener">telegram</a>
+        </div>
+      </section>
     </main>
 
     <footer class="foot3">
@@ -136,7 +172,7 @@
     </div>
 
     <script src="./data.js?v=14"></script>
-    <script src="./app.js?v=181"></script>
+    <script src="./app.js?v=182"></script>
     <script src="./chart.js?v=9"></script>
     <script src="./history.js?v=137"></script>
   </body>
