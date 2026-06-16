@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T15:22:46.333867+00:00",
+  "generated_at": "2026-06-16T20:10:20.263723+00:00",
   "yield_options": {
     "as_of": "2026-06-16",
     "basket_apy": 3.6844559743788636,
@@ -96,7 +96,7 @@
         "basis_discount_reversion:2d"
       ],
       "fwd_ret_1d": null,
-      "dir_ret_1d": null,
+      "dir_ret_1d": -0.036407766990291246,
       "yield_ret_1d": 0.00010015106682992325,
       "yield_apy": 3.722959621337058,
       "active_factors": [

@@ -31,6 +31,21 @@ def clean_number(value: object) -> float | None:
     return float(value)
 
 
+def latest_live_mnt_price() -> dict[str, Any] | None:
+    candles_path = ROOT / "3_app/_3_live/mnt_candles.json"
+    if not candles_path.exists():
+        return None
+    payload = json.loads(candles_path.read_text())
+    candles = payload.get("candles") or []
+    if not candles:
+        return None
+    latest = candles[-1]
+    return {
+        "timestamp": pd.to_datetime(int(latest["t"]), unit="ms", utc=True),
+        "price": float(latest["c"]),
+    }
+
+
 def pool_url(row: pd.Series) -> str:
     project = str(row["project"])
     symbol = str(row["symbol"]).upper()
@@ -119,14 +134,25 @@ def build_past_signals(
     replay: pd.DataFrame,
     health: pd.DataFrame,
     yield_map: dict[str, dict[str, float]],
+    daily: pd.DataFrame,
+    live_price: dict[str, Any] | None,
 ) -> list[dict[str, object]]:
     universe = sorted(health["signal_name"].dropna().unique())
+    closes = {
+        str(row["timestamp"])[:10]: float(row["bybit_perp_close"])
+        for _, row in daily.iterrows()
+        if not pd.isna(row["bybit_perp_close"])
+    }
     rows = []
     for _, day in replay.iloc[::-1].iterrows():
         date = str(day["timestamp"])[:10]
         direction = int(day["direction"])
         yield_info = yield_map.get(date, {"daily": 0.0, "apy": 0.0})
         raw_dir_ret = None if pd.isna(day["directional_return_1d"]) else float(day["directional_return_1d"])
+        if raw_dir_ret is None and direction > 0 and live_price and live_price["timestamp"].date().isoformat() > date:
+            close = closes.get(date)
+            if close and close > 0:
+                raw_dir_ret = live_price["price"] / close - 1.0
         display_ret = raw_dir_ret if direction > 0 else float(yield_info["daily"])
         fired = health[health["timestamp"].astype(str).str.startswith(date)].copy()
         active = fired[fired["active"]].sort_values("health_score", ascending=False)
@@ -190,7 +216,7 @@ def main() -> None:
     out = {
         "generated_at": pd.Timestamp.utcnow().isoformat(),
         "yield_options": yield_options,
-        "past_signals": build_past_signals(replay, health, build_yield_map(replay, yields)),
+        "past_signals": build_past_signals(replay, health, build_yield_map(replay, yields), daily, latest_live_mnt_price()),
         "backtest": backtest,
     }
     OUT.write_text(json.dumps(out, indent=2))

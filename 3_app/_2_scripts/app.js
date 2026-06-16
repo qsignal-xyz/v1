@@ -247,7 +247,8 @@ function renderSignal() {
   const alerts = recentAlerts();
   const intraday = summarizeIntraday(alerts, day);
   selectedReport = dailyReport(day, intraday);
-  $("signalDate").textContent = `${day.date.slice(0, 10)} · 09:00 UTC`;
+  const briefingDate = (historyData?.generated_at || "").slice(0, 10) || day.date.slice(0, 10);
+  $("signalDate").textContent = `${briefingDate} · 09:00 UTC`;
   $("signalTitle").innerHTML = titleHtml(day.signal, day);
   $("signalText").innerHTML =
     `<p>${escapeHtml(day.report[1])}</p>` +
