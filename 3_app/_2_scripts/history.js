@@ -178,6 +178,38 @@ function renderPast() {
   $("lastPast").addEventListener("click", () => { pastPage = pages - 1; renderPast(); });
 }
 
+function aiReportSourceText(report) {
+  const counts = report.source_counts || {};
+  return `${counts.live_signals || 0} live / ${counts.intraday_alerts || 0} events / ${counts.daily_days || 0} daily`;
+}
+
+function renderAiReportHistory() {
+  const el = $("aiReportRows");
+  if (!el) return;
+  const reports = typeof aiReports === "function" ? aiReports() : [];
+  if (!reports.length) {
+    el.innerHTML = `<tr><td class="no-events" colspan="6">No AI analyst reports yet.</td></tr>`;
+    return;
+  }
+  el.innerHTML = reports.slice(0, 24).map((report, i) => {
+    const body = report.report || {};
+    const generated = (report.generated_at || report.timestamp || "").replace("T", " ").replace("+00:00", " UTC");
+    return `<tr class="past-parent ai-report-row" data-ai-report="${i}">
+      <td>${escapeHtml(generated.slice(0, 19))}</td>
+      <td>${escapeHtml(report.source_daily_date || "-")}</td>
+      <td class="action action-${escapeHtml(body.stance || "watch")}">${escapeHtml(body.stance || "watch")}</td>
+      <td>${escapeHtml(String(body.confidence ?? "-"))}/100</td>
+      <td class="signal-cell">${escapeHtml(aiReportSourceText(report))}</td>
+      <td><button class="report-btn" data-ai-report="${i}">report</button></td>
+    </tr>`;
+  }).join("");
+  document.querySelectorAll("[data-ai-report]").forEach((item) => item.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const report = reports[Number(item.dataset.aiReport)];
+    if (report) openAiReport(report);
+  }));
+}
+
 function renderProof(backtest) {
   const summary = Object.fromEntries(backtest.summary.map((row) => [row.label, row]));
   const model = summary["Model Long / Yield"];
@@ -192,8 +224,10 @@ function renderProof(backtest) {
 async function loadHistory() {
   const response = await fetch(`./history_backtest.json?v=${Date.now()}`);
   historyData = await response.json();
+  if (typeof loadAiReports === "function") await loadAiReports();
   syncLatestDaily();
   renderPast();
+  renderAiReportHistory();
   renderProof(historyData.backtest);
   renderBacktest(historyData.backtest);
   renderFeed(true);

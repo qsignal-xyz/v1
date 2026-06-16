@@ -1,6 +1,92 @@
 {
-  "generated_at": "2026-06-15T06:27:14+00:00",
+  "generated_at": "2026-06-16T15:23:47+00:00",
   "reports": [
+    {
+      "id": "ai:20260616152347",
+      "generated_at": "2026-06-16T15:23:47+00:00",
+      "timestamp": "2026-06-16:15:23:47",
+      "cooldown_until": "2026-06-16T15:24:47+00:00",
+      "source_daily_date": "2026-06-15",
+      "source_history_generated_at": "2026-06-16T15:22:46.333867+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Signal Dashboard",
+        "stance": "long",
+        "confidence": 62.0,
+        "summary": "Active long signal: perp trades unusually cheap to spot with 58.33% hit rate.",
+        "why": [
+          "Basis discount reversion signal fired (62% health).",
+          "Perp trades at unusual discount to spot (+3.22% median return)."
+        ],
+        "action": [
+          "Consider long exposure per active signal.",
+          "Best yield route: USDC on aave-v3 at 5.75% APY."
+        ],
+        "risks": [
+          "Negative BTC/ETH correlation may pressure MNT.",
+          "Falling open interest reduces durability of moves."
+        ],
+        "evidence": [
+          "Active factor: basis_discount_reversion (2d horizon).",
+          "MNT price momentum: -2.93% 24h.",
+          "Best yield: USDC on aave-v3 at 5.75% APY."
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 84,
+        "daily_days": 7
+      }
+    },
+    {
+      "id": "ai:20260615171357",
+      "generated_at": "2026-06-15T17:13:57+00:00",
+      "timestamp": "2026-06-15:17:13:57",
+      "cooldown_until": "2026-06-15T17:14:57+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy: USDC on Aave-v3",
+        "stance": "yield",
+        "confidence": 75.0,
+        "summary": "No directional edge. Maintain yield via USDC on aave-v3 at 5.72% APY.",
+        "why": [
+          "No active signals or directional edges detected",
+          "Model defaults to yield when no edge exists",
+          "Best yield route offers superior APY"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3 at 5.72% APY",
+          "Monitor for new signals",
+          "Review stablecoin flows"
+        ],
+        "risks": [
+          "Yield APY subject to change",
+          "Limited capacity in top pool",
+          "Market volatility persists"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "active_factors: []",
+          "best.apy: 5.72% (USDC/aave-v3)",
+          "net_score: 0.0"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 17,
+        "daily_days": 7
+      }
+    },
     {
       "id": "ai:20260615062714",
       "generated_at": "2026-06-15T06:27:14+00:00",

@@ -1,30 +1,30 @@
 {
-  "generated_at": "2026-06-15T01:17:53.876477+00:00",
+  "generated_at": "2026-06-16T15:22:46.333867+00:00",
   "yield_options": {
-    "as_of": "2026-06-15",
-    "basket_apy": 3.7454268428415056,
-    "basket_tvl_usd": 178415981.0,
+    "as_of": "2026-06-16",
+    "basket_apy": 3.6844559743788636,
+    "basket_tvl_usd": 194480291.0,
     "pool_count": 5,
     "best": {
       "pool": "32cb38a5-b9b9-441a-bf07-8fab47b999d3",
       "project": "aave-v3",
       "symbol": "USDC",
-      "tvl_usd": 2274465.0,
-      "apy": 5.7157,
-      "apy_base": 2.68317,
-      "apy_reward": 3.03253,
-      "date": "2026-06-15",
+      "tvl_usd": 1575003.0,
+      "apy": 5.75024,
+      "apy_base": 3.00073,
+      "apy_reward": 2.74951,
+      "date": "2026-06-16",
       "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9&marketName=proto_mantle_v3"
     },
     "capacity": {
       "pool": "a4e37545-203b-4412-9acd-3e8b1aa4d744",
       "project": "aave-v3",
       "symbol": "SUSDE",
-      "tvl_usd": 111469081.0,
+      "tvl_usd": 130603195.0,
       "apy": 3.5,
       "apy_base": 0.0,
       "apy_reward": 3.5,
-      "date": "2026-06-15",
+      "date": "2026-06-16",
       "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x211CC4dD073734dA055fBf44a2b4667d5E5fE5d2&marketName=proto_mantle_v3"
     },
     "pools": [
@@ -32,60 +32,96 @@
         "pool": "32cb38a5-b9b9-441a-bf07-8fab47b999d3",
         "project": "aave-v3",
         "symbol": "USDC",
-        "tvl_usd": 2274465.0,
-        "apy": 5.7157,
-        "apy_base": 2.68317,
-        "apy_reward": 3.03253,
-        "date": "2026-06-15",
+        "tvl_usd": 1575003.0,
+        "apy": 5.75024,
+        "apy_base": 3.00073,
+        "apy_reward": 2.74951,
+        "date": "2026-06-16",
         "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9&marketName=proto_mantle_v3"
       },
       {
         "pool": "47da0cdd-7b1d-4927-9545-20b53b73afa8",
         "project": "aave-v3",
         "symbol": "USDT0",
-        "tvl_usd": 34381114.0,
-        "apy": 4.56923,
-        "apy_base": 2.773,
-        "apy_reward": 1.79623,
-        "date": "2026-06-15",
+        "tvl_usd": 31443298.0,
+        "apy": 4.46709,
+        "apy_base": 2.93884,
+        "apy_reward": 1.52825,
+        "date": "2026-06-16",
         "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x779Ded0c9e1022225f8E0630b35a9b54bE713736&marketName=proto_mantle_v3"
       },
       {
         "pool": "76b70b33-d8a4-4e61-8092-9bd1f2be2fc9",
         "project": "aave-v3",
         "symbol": "USDE",
-        "tvl_usd": 864369.0,
-        "apy": 4.09682,
-        "apy_base": 0.59682,
+        "tvl_usd": 1429029.0,
+        "apy": 3.81415,
+        "apy_base": 0.31415,
         "apy_reward": 3.5,
-        "date": "2026-06-15",
+        "date": "2026-06-16",
         "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34&marketName=proto_mantle_v3"
       },
       {
         "pool": "b5d7a190-38d2-4fdd-8c14-1fd00c11bce1",
         "project": "ondo-yield-assets",
         "symbol": "USDY",
-        "tvl_usd": 29426952.0,
+        "tvl_usd": 29429766.0,
         "apy": 3.55,
         "apy_base": 3.55,
         "apy_reward": null,
-        "date": "2026-06-15",
+        "date": "2026-06-16",
         "url": "https://defillama.com/yields/pool/b5d7a190-38d2-4fdd-8c14-1fd00c11bce1"
       },
       {
         "pool": "a4e37545-203b-4412-9acd-3e8b1aa4d744",
         "project": "aave-v3",
         "symbol": "SUSDE",
-        "tvl_usd": 111469081.0,
+        "tvl_usd": 130603195.0,
         "apy": 3.5,
         "apy_base": 0.0,
         "apy_reward": 3.5,
-        "date": "2026-06-15",
+        "date": "2026-06-16",
         "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x211CC4dD073734dA055fBf44a2b4667d5E5fE5d2&marketName=proto_mantle_v3"
       }
     ]
   },
   "past_signals": [
+    {
+      "date": "2026-06-15",
+      "action": "long",
+      "direction": 1,
+      "net_score": 0.5605,
+      "active_signal_count": 1,
+      "active_signals": [
+        "basis_discount_reversion:2d"
+      ],
+      "fwd_ret_1d": null,
+      "dir_ret_1d": null,
+      "yield_ret_1d": 0.00010015106682992325,
+      "yield_apy": 3.722959621337058,
+      "active_factors": [
+        {
+          "name": "basis_discount_reversion",
+          "horizon": "2d",
+          "side": "long",
+          "health": 62.0,
+          "hit_rate": "+58.33%",
+          "median": "+3.22%",
+          "reason": "perp trades unusually cheap to spot"
+        }
+      ],
+      "rejected_factors": [],
+      "not_fired": [
+        "basis_premium_fade",
+        "bearish_market_volume",
+        "crowded_long_risk",
+        "deleveraged_rebound",
+        "ecosystem_growth_confirmed",
+        "ecosystem_outflow_risk",
+        "failed_volume_breakout",
+        "fee_activity_drop"
+      ]
+    },
     {
       "date": "2026-06-14",
       "action": "yield",
@@ -93,7 +129,7 @@
       "net_score": 0.0,
       "active_signal_count": 0,
       "active_signals": [],
-      "fwd_ret_1d": null,
+      "fwd_ret_1d": 0.0147783251231525,
       "dir_ret_1d": 0.00010075487669714,
       "yield_ret_1d": 0.00010075487669714,
       "yield_apy": 3.7458194094203345,
@@ -241,11 +277,11 @@
       "rejected_factors": [
         {
           "name": "basis_discount_reversion",
-          "horizon": "2d",
+          "horizon": "7d",
           "side": "long",
-          "health": 28.2,
-          "hit_rate": "+50.00%",
-          "median": "+1.43%",
+          "health": 38.0,
+          "hit_rate": "+60.00%",
+          "median": "+1.30%",
           "reason": "perp trades unusually cheap to spot"
         }
       ],
@@ -53765,35 +53801,54 @@
         "btc_hold": 0.9702911326445738,
         "directional": 3.3348690897221984,
         "position": 0.0
+      },
+      {
+        "date": "2026-06-14",
+        "mnt_price": 0.5684,
+        "next_high": 0.5947,
+        "next_low": 0.5645,
+        "btc_price": 65750.1,
+        "action": "yield",
+        "direction": 0,
+        "mnt_ret_1d": 0.0147783251231525,
+        "btc_ret_1d": 0.00874979657825592,
+        "yield_apy": 3.7458194094203345,
+        "yield_observed": true,
+        "yield_daily": 0.00010075487669714,
+        "funding_daily": 9.885e-05,
+        "hold": 0.5770308123249416,
+        "btc_hold": 0.9787809826768994,
+        "directional": 3.3352050940461346,
+        "position": 0.0
       }
     ],
     "summary": [
       {
         "label": "Buy & Hold MNT",
-        "return": -0.4313725490195963,
-        "x_return": 0.5686274509804037,
-        "cagr": -0.24219275156637932,
-        "sharpe": 0.1378457186202511,
+        "return": -0.4229691876750584,
+        "x_return": 0.5770308123249416,
+        "cagr": -0.23643452083283933,
+        "sharpe": 0.14573578761992423,
         "max_dd": -0.8084741976319889,
-        "days": 743
+        "days": 744
       },
       {
         "label": "Buy & Hold BTC",
-        "return": -0.029708867355426216,
-        "x_return": 0.9702911326445738,
-        "cagr": -0.014706503655079084,
-        "sharpe": 0.19734641611253403,
+        "return": -0.02121901732310061,
+        "x_return": 0.9787809826768994,
+        "cagr": -0.010466737039498186,
+        "sharpe": 0.20652230168317634,
         "max_dd": -0.5116077595231281,
-        "days": 743
+        "days": 744
       },
       {
         "label": "Model Long / Yield",
-        "return": 2.3348690897221984,
-        "x_return": 3.3348690897221984,
-        "cagr": 0.8070215662967255,
-        "sharpe": 1.5042368345806603,
+        "return": 2.3352050940461346,
+        "x_return": 3.3352050940461346,
+        "cagr": 0.80567431663256,
+        "sharpe": 1.503328660617309,
         "max_dd": -0.23078433184962033,
-        "days": 743
+        "days": 744
       }
     ],
     "assumptions": {
@@ -53807,30 +53862,30 @@
       "backtest_start": "2024-06-01"
     },
     "yield_options": {
-      "as_of": "2026-06-15",
-      "basket_apy": 3.7454268428415056,
-      "basket_tvl_usd": 178415981.0,
+      "as_of": "2026-06-16",
+      "basket_apy": 3.6844559743788636,
+      "basket_tvl_usd": 194480291.0,
       "pool_count": 5,
       "best": {
         "pool": "32cb38a5-b9b9-441a-bf07-8fab47b999d3",
         "project": "aave-v3",
         "symbol": "USDC",
-        "tvl_usd": 2274465.0,
-        "apy": 5.7157,
-        "apy_base": 2.68317,
-        "apy_reward": 3.03253,
-        "date": "2026-06-15",
+        "tvl_usd": 1575003.0,
+        "apy": 5.75024,
+        "apy_base": 3.00073,
+        "apy_reward": 2.74951,
+        "date": "2026-06-16",
         "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9&marketName=proto_mantle_v3"
       },
       "capacity": {
         "pool": "a4e37545-203b-4412-9acd-3e8b1aa4d744",
         "project": "aave-v3",
         "symbol": "SUSDE",
-        "tvl_usd": 111469081.0,
+        "tvl_usd": 130603195.0,
         "apy": 3.5,
         "apy_base": 0.0,
         "apy_reward": 3.5,
-        "date": "2026-06-15",
+        "date": "2026-06-16",
         "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x211CC4dD073734dA055fBf44a2b4667d5E5fE5d2&marketName=proto_mantle_v3"
       },
       "pools": [
@@ -53838,55 +53893,55 @@
           "pool": "32cb38a5-b9b9-441a-bf07-8fab47b999d3",
           "project": "aave-v3",
           "symbol": "USDC",
-          "tvl_usd": 2274465.0,
-          "apy": 5.7157,
-          "apy_base": 2.68317,
-          "apy_reward": 3.03253,
-          "date": "2026-06-15",
+          "tvl_usd": 1575003.0,
+          "apy": 5.75024,
+          "apy_base": 3.00073,
+          "apy_reward": 2.74951,
+          "date": "2026-06-16",
           "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x09Bc4E0D864854c6aFB6eB9A9cdF58aC190D0dF9&marketName=proto_mantle_v3"
         },
         {
           "pool": "47da0cdd-7b1d-4927-9545-20b53b73afa8",
           "project": "aave-v3",
           "symbol": "USDT0",
-          "tvl_usd": 34381114.0,
-          "apy": 4.56923,
-          "apy_base": 2.773,
-          "apy_reward": 1.79623,
-          "date": "2026-06-15",
+          "tvl_usd": 31443298.0,
+          "apy": 4.46709,
+          "apy_base": 2.93884,
+          "apy_reward": 1.52825,
+          "date": "2026-06-16",
           "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x779Ded0c9e1022225f8E0630b35a9b54bE713736&marketName=proto_mantle_v3"
         },
         {
           "pool": "76b70b33-d8a4-4e61-8092-9bd1f2be2fc9",
           "project": "aave-v3",
           "symbol": "USDE",
-          "tvl_usd": 864369.0,
-          "apy": 4.09682,
-          "apy_base": 0.59682,
+          "tvl_usd": 1429029.0,
+          "apy": 3.81415,
+          "apy_base": 0.31415,
           "apy_reward": 3.5,
-          "date": "2026-06-15",
+          "date": "2026-06-16",
           "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x5d3a1Ff2b6BAb83b63cd9AD0787074081a52ef34&marketName=proto_mantle_v3"
         },
         {
           "pool": "b5d7a190-38d2-4fdd-8c14-1fd00c11bce1",
           "project": "ondo-yield-assets",
           "symbol": "USDY",
-          "tvl_usd": 29426952.0,
+          "tvl_usd": 29429766.0,
           "apy": 3.55,
           "apy_base": 3.55,
           "apy_reward": null,
-          "date": "2026-06-15",
+          "date": "2026-06-16",
           "url": "https://defillama.com/yields/pool/b5d7a190-38d2-4fdd-8c14-1fd00c11bce1"
         },
         {
           "pool": "a4e37545-203b-4412-9acd-3e8b1aa4d744",
           "project": "aave-v3",
           "symbol": "SUSDE",
-          "tvl_usd": 111469081.0,
+          "tvl_usd": 130603195.0,
           "apy": 3.5,
           "apy_base": 0.0,
           "apy_reward": 3.5,
-          "date": "2026-06-15",
+          "date": "2026-06-16",
           "url": "https://app.aave.com/reserve-overview/?underlyingAsset=0x211CC4dD073734dA055fBf44a2b4667d5E5fE5d2&marketName=proto_mantle_v3"
         }
       ]

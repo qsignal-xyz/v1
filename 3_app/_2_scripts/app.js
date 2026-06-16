@@ -388,9 +388,24 @@ function renderAiStatus() {
   button.disabled = false;
 }
 
+function renderAiLoadingPanel() {
+  const el = $("aiChartPanel");
+  if (!el) return;
+  el.innerHTML =
+    `<div class="aip-row"><button class="ai-panel-btn" type="button" disabled><img src="./_0_assets/qsignal-ai.svg" alt="" /><span>Ask AI</span></button></div>` +
+    `<div class="aip-loading" aria-label="AI report loading">` +
+    `<div class="aip-loading-spinner"></div>` +
+    `</div>`;
+  requestAnimationFrame(syncAiPanelHeight);
+}
+
 function renderAiChartPanel() {
   const el = $("aiChartPanel");
   if (!el) return;
+  if (aiWorking) {
+    renderAiLoadingPanel();
+    return;
+  }
   const report = latestAiReport();
   const top =
     `<div class="aip-row"><button class="ai-panel-btn" type="button" id="aiAnalyzeBtn"><img src="./_0_assets/qsignal-ai.svg" alt="" /><span>Ask AI</span></button></div>` +
@@ -468,14 +483,7 @@ function openAiReport(report) {
 async function runAiAnalyze() {
   if (aiWorking) return;
   aiWorking = true;
-  const el = $("aiChartPanel");
-  if (el) {
-    el.innerHTML =
-      `<div class="aip-row"><button class="ai-panel-btn" type="button" disabled><img src="./_0_assets/qsignal-ai.svg" alt="" /><span>Ask AI</span></button></div>` +
-      `<div class="aip-loading" aria-label="AI report loading">` +
-      `<div class="aip-loading-spinner"></div>` +
-      `</div>`;
-  }
+  renderAiLoadingPanel();
   try {
     const response = await fetch("/api/ai/analyze", {
       method: "POST",
@@ -489,8 +497,10 @@ async function runAiAnalyze() {
       throw new Error(data.error || data.stderr || `HTTP ${response.status}`);
     }
     await loadAiReports();
+    aiWorking = false;
     renderFeed(true);
     renderAiChartPanel();
+    if (typeof renderAiReportHistory === "function") renderAiReportHistory();
     if (data.report) openAiReport(data.report);
     if (data.status === "cooldown") setAiStatusMessage("Cooldown active; showing latest.", "ready", 6000);
   } catch (error) {
@@ -966,6 +976,7 @@ async function refreshLiveData(force = false) {
     if (liveChanged || force) renderLiveSignals();
     renderAiStatus();
     renderAiChartPanel();
+    if (aiChanged && typeof renderAiReportHistory === "function") renderAiReportHistory();
     renderFeed(changed || force);
   } finally {
     refreshingLiveData = false;

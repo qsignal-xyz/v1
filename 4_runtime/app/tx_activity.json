@@ -1,54 +1,54 @@
 {
-  "latest_block": 96683359,
-  "timestamp": 1781497097,
+  "latest_block": 96746487,
+  "timestamp": 1781623353,
   "block_time_assumed": 2,
   "hours": [
     {
       "hour": 0,
-      "tx_count_sampled": 13,
-      "tx_count_estimated": 13,
+      "tx_count_sampled": 27,
+      "tx_count_estimated": 27,
       "samples": 12
     },
     {
       "hour": 1,
+      "tx_count_sampled": 19,
+      "tx_count_estimated": 19,
+      "samples": 12
+    },
+    {
+      "hour": 2,
+      "tx_count_sampled": 14,
+      "tx_count_estimated": 14,
+      "samples": 12
+    },
+    {
+      "hour": 3,
       "tx_count_sampled": 16,
       "tx_count_estimated": 16,
       "samples": 12
     },
     {
-      "hour": 2,
-      "tx_count_sampled": 15,
-      "tx_count_estimated": 15,
+      "hour": 4,
+      "tx_count_sampled": 14,
+      "tx_count_estimated": 14,
       "samples": 12
     },
     {
-      "hour": 3,
+      "hour": 5,
       "tx_count_sampled": 13,
       "tx_count_estimated": 13,
       "samples": 12
     },
     {
-      "hour": 4,
-      "tx_count_sampled": 20,
-      "tx_count_estimated": 20,
-      "samples": 12
-    },
-    {
-      "hour": 5,
+      "hour": 6,
       "tx_count_sampled": 18,
       "tx_count_estimated": 18,
       "samples": 12
     },
     {
-      "hour": 6,
-      "tx_count_sampled": 21,
-      "tx_count_estimated": 21,
-      "samples": 12
-    },
-    {
       "hour": 7,
-      "tx_count_sampled": 16,
-      "tx_count_estimated": 16,
+      "tx_count_sampled": 18,
+      "tx_count_estimated": 18,
       "samples": 12
     },
     {
@@ -59,92 +59,92 @@
     },
     {
       "hour": 9,
+      "tx_count_sampled": 21,
+      "tx_count_estimated": 21,
+      "samples": 12
+    },
+    {
+      "hour": 10,
+      "tx_count_sampled": 15,
+      "tx_count_estimated": 15,
+      "samples": 12
+    },
+    {
+      "hour": 11,
       "tx_count_sampled": 28,
       "tx_count_estimated": 28,
       "samples": 12
     },
     {
-      "hour": 10,
-      "tx_count_sampled": 27,
-      "tx_count_estimated": 27,
-      "samples": 12
-    },
-    {
-      "hour": 11,
-      "tx_count_sampled": 29,
-      "tx_count_estimated": 29,
-      "samples": 12
-    },
-    {
       "hour": 12,
-      "tx_count_sampled": 19,
-      "tx_count_estimated": 19,
+      "tx_count_sampled": 20,
+      "tx_count_estimated": 20,
       "samples": 12
     },
     {
       "hour": 13,
-      "tx_count_sampled": 27,
-      "tx_count_estimated": 27,
-      "samples": 12
-    },
-    {
-      "hour": 14,
-      "tx_count_sampled": 12,
-      "tx_count_estimated": 12,
-      "samples": 12
-    },
-    {
-      "hour": 15,
       "tx_count_sampled": 18,
       "tx_count_estimated": 18,
       "samples": 12
     },
     {
+      "hour": 14,
+      "tx_count_sampled": 33,
+      "tx_count_estimated": 33,
+      "samples": 12
+    },
+    {
+      "hour": 15,
+      "tx_count_sampled": 19,
+      "tx_count_estimated": 19,
+      "samples": 12
+    },
+    {
       "hour": 16,
-      "tx_count_sampled": 24,
-      "tx_count_estimated": 24,
+      "tx_count_sampled": 16,
+      "tx_count_estimated": 16,
       "samples": 12
     },
     {
       "hour": 17,
-      "tx_count_sampled": 19,
-      "tx_count_estimated": 19,
+      "tx_count_sampled": 33,
+      "tx_count_estimated": 33,
       "samples": 12
     },
     {
       "hour": 18,
-      "tx_count_sampled": 17,
-      "tx_count_estimated": 17,
+      "tx_count_sampled": 28,
+      "tx_count_estimated": 28,
       "samples": 12
     },
     {
       "hour": 19,
-      "tx_count_sampled": 17,
-      "tx_count_estimated": 17,
+      "tx_count_sampled": 40,
+      "tx_count_estimated": 40,
       "samples": 12
     },
     {
       "hour": 20,
-      "tx_count_sampled": 19,
-      "tx_count_estimated": 19,
+      "tx_count_sampled": 36,
+      "tx_count_estimated": 36,
       "samples": 12
     },
     {
       "hour": 21,
+      "tx_count_sampled": 21,
+      "tx_count_estimated": 21,
+      "samples": 12
+    },
+    {
+      "hour": 22,
       "tx_count_sampled": 19,
       "tx_count_estimated": 19,
       "samples": 12
     },
     {
-      "hour": 22,
-      "tx_count_sampled": 30,
-      "tx_count_estimated": 30,
-      "samples": 12
-    },
-    {
       "hour": 23,
-      "tx_count_sampled": 1,
-      "tx_count_estimated": 12,
+      "tx_count_sampled": 2,
+      "tx_count_estimated": 24,
       "samples": 1
     }
   ],

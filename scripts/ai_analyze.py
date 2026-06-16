@@ -160,6 +160,7 @@ def context() -> dict[str, Any]:
     yields = history.get("yield_options", {})
     return {
         "as_of": now_utc().isoformat(),
+        "history_generated_at": history.get("generated_at"),
         "current_daily": past[0] if past else {},
         "last_7_daily": past,
         "yield_options": {
@@ -337,6 +338,8 @@ def run(force: bool = False) -> dict[str, Any]:
         "generated_at": generated.isoformat(),
         "timestamp": generated.strftime("%Y-%m-%d:%H:%M:%S"),
         "cooldown_until": (generated + timedelta(seconds=COOLDOWN_SECONDS)).isoformat(),
+        "source_daily_date": str(ctx.get("current_daily", {}).get("date") or ""),
+        "source_history_generated_at": ctx.get("history_generated_at"),
         "models": MODELS,
         "merge_model": MERGE_MODEL,
         "report": parsed,
@@ -356,7 +359,10 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--force", action="store_true")
     args = parser.parse_args()
-    print(json.dumps(run(force=args.force), indent=2))
+    result = run(force=args.force)
+    print(json.dumps(result, indent=2))
+    if result.get("status") == "error":
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
