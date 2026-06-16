@@ -14,6 +14,7 @@ fi
 python3 0_data/_4_build/_2_backfill_intraday_events.py
 python3 0_data/_4_build/_5_prune_onchain_raw_logs.py
 python3 scripts/fetch_tx_activity.py
+python3 3_app/_3_live/fetch_mnt_candles.py
 python3 scripts/generate_live_signals.py
 if [[ "${QSIGNAL_SKIP_SEND:-0}" == "1" ]]; then
   python3 5_send/_3_dispatch.py --kind live --dry-run
