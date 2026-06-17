@@ -418,7 +418,7 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
 .flow-side-edge.positive { top: 2px; }
 .flow-side-edge.negative { bottom: 2px; }
 .flow-side-net { display: none; }
-.intra-col { position: absolute; top: 0; bottom: 0; cursor: pointer; z-index: 2; }
+.intra-col { position: absolute; top: 0; bottom: 0; cursor: pointer; z-index: 1; }
 .flow-wick {
   position: absolute; left: 50%; width: 1px; min-height: 2px;
   transform: translateX(-50%); z-index: 1;
@@ -443,11 +443,11 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
 .intra-col:hover .flow-body.negative { background: rgba(255,69,58,.35); }
 .intra-col:hover { background: rgba(255,255,255,.03); }
 /* ── PRICE LINE ── */
-.price-layer { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.price-layer { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
 .price-line-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
 .price-line-svg .price-area { fill: url(#pFill); }
-.price-line-svg .price-close { fill: none; stroke: var(--accent); stroke-width: 0.5; vector-effect: non-scaling-stroke; }
-.price-line-svg .price-dot { fill: var(--accent); }
+.price-line-svg .price-close { fill: none; stroke: var(--accent); stroke-width: 1.1; vector-effect: non-scaling-stroke; filter: drop-shadow(0 0 3px rgba(41,98,255,.7)); }
+.price-line-svg .price-dot { fill: var(--accent); filter: drop-shadow(0 0 2px rgba(41,98,255,.7)); }
 .price-line-svg .price-now-line { stroke: rgba(255,255,255,.25); stroke-width: 0.3; stroke-dasharray: 1 1; vector-effect: non-scaling-stroke; }
 .price-now-tag {
   position: absolute; right: -6px; transform: translate(100%, -50%);
@@ -475,7 +475,7 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
 }
 .intra-now-dot:hover ~ .intra-now-tip { opacity: .9; }
 
-.intra-ev-dot { position: absolute; width: 7px; height: 7px; border-radius: 50%; z-index: 3; cursor: pointer; transition: transform .1s; }
+.intra-ev-dot { position: absolute; width: 7px; height: 7px; border-radius: 50%; z-index: 4; cursor: pointer; transition: transform .1s; }
 .intra-ev-dot:hover { transform: scale(1.6); }
 .intra-ai-dot {
   position: absolute; width: 15px; height: 15px; z-index: 8; cursor: pointer;
