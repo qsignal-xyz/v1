@@ -1,19 +1,18 @@
 {
-  "generated_at": "2026-06-17T12:03:24+00:00",
+  "generated_at": "2026-06-17T12:16:02+00:00",
   "reports": [
     {
-      "block_number": null,
+      "block_number": 96784125,
       "chain_id": 5000,
-      "committed_at": "",
+      "committed_at": "2026-06-17T12:16:02+00:00",
       "date": "2026-06-16",
-      "explorer_url": "",
+      "explorer_url": "https://mantlescan.xyz/tx/0x99b9f07495ecf8c47c13840883ea5574506597a78c9699d4dbf7c3f9de0d03fd",
       "ledger_address": "0x0000000c5c652995bdcAe8e78902414A00AF8983",
-      "note": "ledger transaction pending",
-      "oracle": "",
+      "oracle": "0xaA116bf1647Ba3C39579BD25D02172A8Da6B42c0",
       "report_hash": "0xfba9a3e8cbfef7f1292f006f2d01f2c45ec3bb2ca5ea909825a3b0b0d1164d2a",
       "report_uri": "https://qsignal.xyz/reports#daily-2026-06-16",
-      "status": "pending",
-      "tx_hash": ""
+      "status": "committed",
+      "tx_hash": "0x99b9f07495ecf8c47c13840883ea5574506597a78c9699d4dbf7c3f9de0d03fd"
     }
   ]
 }
