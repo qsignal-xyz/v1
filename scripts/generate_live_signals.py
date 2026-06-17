@@ -7,11 +7,13 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
+from collections.abc import Callable
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "4_runtime/app/live_signals.json"
 INTRADAY = ROOT / "4_runtime/app/intraday_events.json"
+MNT_CANDLES = ROOT / "3_app/_3_live/mnt_candles.json"
 BYBIT = "https://api.bybit.com"
 UA = "Mozilla/5.0 (compatible; research-script; +local-analysis)"
 
@@ -54,6 +56,36 @@ def klines(symbol: str, category: str = "linear", limit: int = 48) -> list[dict[
             }
         )
     return sorted(rows, key=lambda row: row["timestamp_ms"])
+
+
+def cached_mnt_klines() -> list[dict[str, float]]:
+    if not MNT_CANDLES.exists():
+        return []
+    payload = json.loads(MNT_CANDLES.read_text())
+    rows = []
+    for row in payload.get("candles", []):
+        close = float(row["c"])
+        volume = float(row.get("v") or 0)
+        rows.append(
+            {
+                "timestamp_ms": float(row["t"]),
+                "open": float(row["o"]),
+                "high": float(row["h"]),
+                "low": float(row["l"]),
+                "close": close,
+                "volume": volume,
+                "turnover": volume * close,
+            }
+        )
+    return sorted(rows, key=lambda row: row["timestamp_ms"])
+
+
+def fetch_optional(name: str, errors: list[str], fn: Callable[[], list[dict[str, float]]]) -> list[dict[str, float]]:
+    try:
+        return fn()
+    except Exception as exc:
+        errors.append(f"{name}: {exc}")
+        return []
 
 
 def open_interest(symbol: str) -> list[dict[str, float]]:
@@ -199,15 +231,17 @@ def build() -> dict[str, object]:
     errors: list[str] = []
     state: dict[str, object] = {"generated_at": generated.isoformat()}
 
-    try:
-        mnt = klines("MNTUSDT", "linear", 48)
-        btc = klines("BTCUSDT", "linear", 48)
-        eth = klines("ETHUSDT", "linear", 48)
-        oi = open_interest("MNTUSDT")
-        fund = funding("MNTUSDT")
-    except Exception as exc:
-        errors.append(f"bybit_fetch: {exc}")
-        mnt, btc, eth, oi, fund = [], [], [], [], []
+    mnt_source = "bybit_linear"
+    mnt = fetch_optional("mnt_kline_fetch", errors, lambda: klines("MNTUSDT", "linear", 48))
+    if not mnt:
+        mnt = cached_mnt_klines()
+        if mnt:
+            mnt_source = "cached_spot_candles"
+            errors.append("mnt_kline_fallback: using _3_live/mnt_candles.json")
+    btc = fetch_optional("btc_kline_fetch", errors, lambda: klines("BTCUSDT", "linear", 48))
+    eth = fetch_optional("eth_kline_fetch", errors, lambda: klines("ETHUSDT", "linear", 48))
+    oi = fetch_optional("open_interest_fetch", errors, lambda: open_interest("MNTUSDT"))
+    fund = fetch_optional("funding_fetch", errors, lambda: funding("MNTUSDT"))
 
     if mnt:
         price = mnt[-1]["close"]
@@ -219,6 +253,7 @@ def build() -> dict[str, object]:
         vol_med = statistics.median(prior) if prior else 0.0
         vol_ratio = vol_last / vol_med if vol_med else 0.0
         state["mnt"] = {
+            "source": mnt_source,
             "price": price,
             "change_1h": mnt_1h,
             "change_6h": mnt_6h,
@@ -233,7 +268,7 @@ def build() -> dict[str, object]:
             severity=severity_from_abs_pct(mnt_1h, 0.015, 0.035),
             label="MNT price momentum",
             value=fmt_pct(mnt_1h),
-            detail=f"MNTUSDT perps trade at ${price:.4f}; 1h {fmt_pct(mnt_1h)}, 6h {fmt_pct(mnt_6h)}, 24h {fmt_pct(mnt_24h)}.",
+            detail=f"{'MNTUSDT perps' if mnt_source == 'bybit_linear' else 'MNTUSDT spot cache'} trade at ${price:.4f}; 1h {fmt_pct(mnt_1h)}, 6h {fmt_pct(mnt_6h)}, 24h {fmt_pct(mnt_24h)}.",
             evidence=[f"price ${price:.4f}", f"1h {fmt_pct(mnt_1h)}", f"6h {fmt_pct(mnt_6h)}", f"24h {fmt_pct(mnt_24h)}"],
             proposed_action="Use as market context; daily model still controls allocation.",
         )
