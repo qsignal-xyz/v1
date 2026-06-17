@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T15:30:25+00:00",
+  "generated_at": "2026-06-17T18:39:07+00:00",
   "reports": [
     {
       "block_number": 96789956,
@@ -26,6 +26,32 @@
       "report_uri": "https://qsignal.xyz/reports#daily-2026-06-16",
       "status": "committed",
       "tx_hash": "0x99b9f07495ecf8c47c13840883ea5574506597a78c9699d4dbf7c3f9de0d03fd"
+    },
+    {
+      "block_number": 96794494,
+      "chain_id": 5000,
+      "committed_at": "2026-06-17T18:01:41+00:00",
+      "date": "2026-06-15",
+      "explorer_url": "https://mantlescan.xyz/tx/0xd9a106aef107f166751bed8842ecd20a7dfb2a36feb1ccf0e4f852fbe39c5912",
+      "ledger_address": "0x0000000c5c652995bdcAe8e78902414A00AF8983",
+      "oracle": "0xaA116bf1647Ba3C39579BD25D02172A8Da6B42c0",
+      "report_hash": "0x89e0e43c986704d7d8a0ecc7148da5c5e3c22350f3942132a110f5e0281f0b2f",
+      "report_uri": "https://qsignal.xyz/reports#daily-2026-06-15",
+      "status": "committed",
+      "tx_hash": "0xd9a106aef107f166751bed8842ecd20a7dfb2a36feb1ccf0e4f852fbe39c5912"
+    },
+    {
+      "block_number": 96794490,
+      "chain_id": 5000,
+      "committed_at": "2026-06-17T18:01:32+00:00",
+      "date": "2026-06-14",
+      "explorer_url": "https://mantlescan.xyz/tx/0x7ae7bcac7785a7224927535c6ed244f438bae09d1f7ad2f332c1a5b843afed30",
+      "ledger_address": "0x0000000c5c652995bdcAe8e78902414A00AF8983",
+      "oracle": "0xaA116bf1647Ba3C39579BD25D02172A8Da6B42c0",
+      "report_hash": "0xbcc414708c3adcdeb6e0b841ac4a9001347fc4d950ef81d7eb01b2c529cf2cde",
+      "report_uri": "https://qsignal.xyz/reports#daily-2026-06-14",
+      "status": "committed",
+      "tx_hash": "0x7ae7bcac7785a7224927535c6ed244f438bae09d1f7ad2f332c1a5b843afed30"
     }
   ]
 }
