@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import subprocess
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -28,6 +29,11 @@ def read_json(path: Path, default: Any) -> Any:
 def write_state(payload: dict[str, Any]) -> None:
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     STATE_PATH.write_text(json.dumps(payload, indent=2, sort_keys=True))
+
+
+def write_json(path: Path, payload: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True))
 
 
 def current_report_day(now: datetime) -> str:
@@ -63,6 +69,41 @@ def report_commit_due(target_day: str) -> bool:
         if report.get("tx_hash") and report.get("status") in {"committed", "submitted"}:
             return False
     return True
+
+
+def sync_public_report_commits() -> None:
+    url = "https://qsignal.xyz/report_commits.json"
+    try:
+        with urllib.request.urlopen(f"{url}?sync={int(now_utc().timestamp())}", timeout=30) as response:
+            public = json.loads(response.read())
+    except Exception as exc:
+        print(f"{now_utc().isoformat()} public report commit sync failed: {exc}")
+        return
+
+    data = read_json(REPORT_COMMITS_PATH, {"reports": []})
+    reports = list(data.get("reports") or [])
+    existing = {
+        (str(item.get("date") or ""), str(item.get("report_hash") or ""))
+        for item in reports
+        if item.get("tx_hash") and item.get("status") in {"committed", "submitted"}
+    }
+    added = 0
+    for record in public.get("reports") or []:
+        if not record.get("tx_hash") or record.get("status") not in {"committed", "submitted"}:
+            continue
+        key = (str(record.get("date") or ""), str(record.get("report_hash") or ""))
+        if not key[0] or not key[1] or key in existing:
+            continue
+        reports.append(record)
+        existing.add(key)
+        added += 1
+
+    if added:
+        reports.sort(key=lambda item: str(item.get("date") or ""), reverse=True)
+        data["reports"] = reports[:365]
+        data["generated_at"] = now_utc().isoformat()
+        write_json(REPORT_COMMITS_PATH, data)
+        print(f"{now_utc().isoformat()} synced {added} public report commit(s)")
 
 
 def report_commit_backlog(target_day: str) -> list[str]:
@@ -161,6 +202,7 @@ def run_publish_backlog(target_day: str) -> int:
 
 
 def main() -> int:
+    sync_public_report_commits()
     target_day = current_report_day(now_utc())
     if not refresh_due(target_day):
         result = run_publish_backlog(target_day)
