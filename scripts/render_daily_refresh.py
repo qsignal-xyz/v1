@@ -64,6 +64,15 @@ def report_commit_due(target_day: str) -> bool:
     return True
 
 
+def report_commit_backlog(target_day: str) -> list[str]:
+    dates = {target_day}
+    for report in read_json(AI_PATH, {}).get("reports") or []:
+        source_day = str(report.get("source_daily_date") or "")
+        if source_day and source_day <= target_day:
+            dates.add(source_day)
+    return [day for day in sorted(dates) if report_commit_due(day)]
+
+
 def refresh_due(target_day: str) -> bool:
     if latest_history_day() < target_day:
         return True
@@ -137,22 +146,28 @@ def run_publish(target_day: str) -> int:
     return result.returncode
 
 
+def run_publish_backlog(target_day: str) -> int:
+    for day in report_commit_backlog(target_day):
+        print(f"{now_utc().isoformat()} render daily report commit due for {day}")
+        result = run_publish(day)
+        if result != 0:
+            return result
+    return 0
+
+
 def main() -> int:
     target_day = current_report_day(now_utc())
     if not refresh_due(target_day):
-        if report_commit_due(target_day):
-            print(f"{now_utc().isoformat()} render daily report commit due for {target_day}")
-            return run_publish(target_day)
+        result = run_publish_backlog(target_day)
+        if result != 0:
+            return result
         print(f"{now_utc().isoformat()} render daily refresh skipped; target {target_day} already current")
         return 0
     print(f"{now_utc().isoformat()} render daily refresh due for {target_day}")
     result = run_daily(target_day)
     if result != 0:
         return result
-    if report_commit_due(target_day):
-        print(f"{now_utc().isoformat()} render daily report commit due for {target_day}")
-        return run_publish(target_day)
-    return 0
+    return run_publish_backlog(target_day)
 
 
 if __name__ == "__main__":

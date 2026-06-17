@@ -196,18 +196,20 @@ function renderAiReportHistory() {
   if (!el) return;
   const reports = typeof aiReports === "function" ? aiReports() : [];
   if (!reports.length) {
-    el.innerHTML = `<tr><td class="no-events" colspan="6">No AI analyst reports yet.</td></tr>`;
+    el.innerHTML = `<tr><td class="no-events" colspan="7">No AI analyst reports yet.</td></tr>`;
     return;
   }
   el.innerHTML = reports.slice(0, 24).map((report, i) => {
     const body = report.report || {};
     const generated = (report.generated_at || report.timestamp || "").replace("T", " ").replace("+00:00", " UTC");
+    const commit = reportCommitFor(report.source_daily_date || "");
     return `<tr class="past-parent ai-report-row" data-ai-report="${i}">
       <td>${escapeHtml(generated.slice(0, 19))}</td>
       <td>${escapeHtml(report.source_daily_date || "-")}</td>
       <td class="action action-${escapeHtml(body.stance || "watch")}">${escapeHtml(body.stance || "watch")}</td>
       <td>${escapeHtml(String(body.confidence ?? "-"))}/100</td>
       <td class="signal-cell">${escapeHtml(aiReportSourceText(report))}</td>
+      <td>${commitLink(commit)}</td>
       <td><button class="report-btn" data-ai-report="${i}">report</button></td>
     </tr>`;
   }).join("");
