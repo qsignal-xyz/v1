@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import urllib.request
 from datetime import datetime, timezone
@@ -142,6 +143,7 @@ def run_daily(target_day: str) -> int:
     result = subprocess.run(
         ["bash", "scripts/update_daily_app.sh"],
         cwd=str(ROOT),
+        env={**os.environ, "QSIGNAL_SKIP_PUBLISH": "1"},
         text=True,
         capture_output=True,
         timeout=1800,
@@ -208,7 +210,21 @@ def main() -> int:
         result = run_publish_backlog(target_day)
         if result != 0:
             return result
-        print(f"{now_utc().isoformat()} render daily refresh skipped; target {target_day} already current")
+        message = f"{now_utc().isoformat()} render daily refresh skipped; target {target_day} already current"
+        state = read_json(STATE_PATH, {})
+        state.update(
+            {
+                "last_checked_at": now_utc().isoformat(),
+                "last_attempt_target_day": target_day,
+                "last_stdout_tail": message,
+                "last_stderr_tail": "",
+                "latest_history_day": latest_history_day(),
+                "latest_ai_source_day": latest_ai_source_day(),
+                "status": "current",
+            }
+        )
+        write_state(state)
+        print(message)
         return 0
     print(f"{now_utc().isoformat()} render daily refresh due for {target_day}")
     result = run_daily(target_day)
