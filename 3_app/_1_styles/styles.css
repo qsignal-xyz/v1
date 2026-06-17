@@ -656,7 +656,7 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
 .report-card {
   width: min(520px, 100%); max-height: 50vh; position: relative; padding: 20px;
   border: 1px solid var(--border); background: var(--card);
-  overflow-y: auto; overscroll-behavior: contain;
+  overflow: auto; overscroll-behavior: contain;
   scrollbar-width: thin; scrollbar-color: var(--border) transparent;
 }
 .rc-close {
@@ -666,10 +666,10 @@ h1 .sig-arrow { font-size: 20px; margin-right: 8px; font-style: normal; }
 }
 .rc-close:hover { border-color: var(--text-med); color: var(--text); }
 .rc-label { margin-bottom: 12px; color: var(--text-dim); font-size: 9px; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 400; }
-.report-card h2 { margin: 0 0 10px; font-size: 16px; font-weight: 700; }
-.report-card p { margin: 0 0 12px; color: var(--text-med); font-size: 13px; line-height: 1.55; white-space: pre-line; }
+.report-card h2 { margin: 0 0 10px; font-size: 16px; font-weight: 700; overflow-wrap: anywhere; }
+.report-card p { margin: 0 0 12px; color: var(--text-med); font-size: 13px; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; }
 .rc-section { margin: 14px 0 6px; color: var(--text-dim); font-size: 9px; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; }
-.rc-evidence { padding: 8px 14px; border: 1px solid var(--border); background: rgba(255,255,255,.02); color: var(--text-med); font-size: 11px; line-height: 1.5; white-space: pre-line; }
+.rc-evidence { padding: 8px 14px; border: 1px solid var(--border); background: rgba(255,255,255,.02); color: var(--text-med); font-size: 11px; line-height: 1.5; white-space: pre-line; overflow-wrap: anywhere; }
 .event-detail-grid {
   display: grid; grid-template-columns: 96px 1fr; gap: 6px 12px;
   padding: 10px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
@@ -764,8 +764,10 @@ th:nth-child(5), td:nth-child(5) { text-align: right; }
 .past-table tr:hover td { background: rgba(255,255,255,.04); }
 .past-table .r { text-align: right; }
 .past-table .signal-cell { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.past-table td:nth-child(3), .past-table td:nth-child(4) { text-align: center; }
-.past-table th:nth-child(3), .past-table th:nth-child(4) { text-align: center; }
+.past-table td:nth-child(3), .past-table td:nth-child(4), .past-table td:nth-child(6), .past-table td:nth-child(7) { text-align: center; }
+.past-table th:nth-child(3), .past-table th:nth-child(4), .past-table th:nth-child(6), .past-table th:nth-child(7) { text-align: center; }
+.ledger-link, .ledger-pending { white-space: nowrap; font-size: 10px; }
+.ledger-pending { color: var(--text-dim); }
 
 .pager {
   display: flex; align-items: center; justify-content: center; gap: 12px;

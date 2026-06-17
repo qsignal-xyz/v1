@@ -1,4 +1,5 @@
 let historyData = null;
+let reportCommitsData = { reports: [] };
 let pastPage = 0;
 const PAST_PAGE_SIZE = 30;
 const routeByView = { live: "/live", signals: "/reports", backtest: "/backtest", docs: "/docs" };
@@ -154,14 +155,18 @@ function renderPast() {
   pastPage = Math.min(pastPage, pages - 1);
   const start = pastPage * PAST_PAGE_SIZE;
   const shown = rows.slice(start, start + PAST_PAGE_SIZE);
-  $("pastRows").innerHTML = shown.map((day, i) => `<tr class="past-parent" data-i="${start + i}">
+  $("pastRows").innerHTML = shown.map((day, i) => {
+    const commit = reportCommitFor(day.date);
+    return `<tr class="past-parent" id="daily-${escapeHtml(day.date)}" data-i="${start + i}">
     <td>${day.date}</td>
     <td class="signal-cell">${escapeHtml(signalLabel(day))}</td>
     <td class="${actionClass(day)}">${escapeHtml(actionLabel(day))}</td>
     <td>${fmtScore(day.net_score)}</td>
     <td class="r ${valueClass(fmtPct(day.dir_ret_1d))}">${fmtPct(day.dir_ret_1d)}</td>
+    <td>${commitLink(commit)}</td>
     <td><button class="report-btn" data-report="${start + i}">report</button></td>
-  </tr>`).join("");
+  </tr>`;
+  }).join("");
   document.querySelectorAll(".report-btn").forEach((button) => button.addEventListener("click", (event) => {
     event.stopPropagation();
     openReport(reportForDay(rows[Number(button.dataset.report)]), "Daily Signal Report");
@@ -224,6 +229,7 @@ function renderProof(backtest) {
 async function loadHistory() {
   const response = await fetch(`./history_backtest.json?v=${Date.now()}`);
   historyData = await response.json();
+  await loadReportCommits();
   if (typeof loadAiReports === "function") await loadAiReports();
   syncLatestDaily();
   renderPast();
@@ -232,6 +238,36 @@ async function loadHistory() {
   renderBacktest(historyData.backtest);
   renderFeed(true);
   document.body.classList.add("is-ready");
+}
+
+async function loadReportCommits() {
+  try {
+    const response = await fetch(`./report_commits.json?v=${Date.now()}`);
+    if (response.ok) reportCommitsData = await response.json();
+  } catch (error) {
+    console.warn("report_commits.json unavailable", error);
+  }
+}
+
+function reportCommitFor(date) {
+  const reports = reportCommitsData?.reports || [];
+  return reports.find((item) => item.date === date) || null;
+}
+
+function shortTx(hash) {
+  if (!hash) return "";
+  return `${hash.slice(0, 8)}...${hash.slice(-4)}`;
+}
+
+function commitLink(commit) {
+  if (!commit) return `<span class="ledger-pending" title="Daily report has not been anchored yet">pending</span>`;
+  if (commit.tx_hash && commit.explorer_url) {
+    return `<a class="ledger-link" href="${escapeHtml(commit.explorer_url)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">tx</a>`;
+  }
+  if (commit.tx_hash) {
+    return `<a class="ledger-link" href="https://mantlescan.xyz/tx/${escapeHtml(commit.tx_hash)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">${escapeHtml(shortTx(commit.tx_hash))}</a>`;
+  }
+  return `<span class="ledger-pending" title="${escapeHtml(commit.report_hash || "Daily report anchor pending")}">pending</span>`;
 }
 
 function latestCompleteUtcDay() {

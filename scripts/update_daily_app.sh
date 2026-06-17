@@ -17,6 +17,7 @@ python3 1_signal/_3_build/_0_generate_daily_signals.py
 python3 2_backtest/_3_build/_0_run_daily_backtest.py
 python3 scripts/build_app_data.py
 python3 scripts/ai_analyze.py --force
+python3 scripts/publish_daily_report.py
 
 if [[ "${QSIGNAL_SKIP_SEND:-0}" == "1" ]]; then
   python3 5_send/_3_dispatch.py --kind daily --dry-run

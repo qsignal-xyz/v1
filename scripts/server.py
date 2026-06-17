@@ -15,6 +15,7 @@ GENERATED_PAYLOADS = {
     "history_backtest.json",
     "intraday_events.json",
     "live_signals.json",
+    "report_commits.json",
     "tx_activity.json",
 }
 
@@ -55,12 +56,27 @@ def parse_script_json(stdout: str) -> dict:
 
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):
+        self._sent_no_cache = False
         super().__init__(*args, directory=str(APP), **kwargs)
+
+    def send_no_cache_headers(self) -> None:
+        self.send_header("Cache-Control", "no-store, max-age=0, must-revalidate")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
+        self._sent_no_cache = True
+
+    def end_headers(self) -> None:
+        path = urlparse(self.path).path
+        suffix = Path(path).suffix
+        if not self._sent_no_cache and (suffix in {".html", ".js", ".css", ".json"} or path in {"/", "/live", "/reports", "/backtest", "/docs"}):
+            self.send_no_cache_headers()
+        super().end_headers()
 
     def send_json(self, status: int, payload: dict) -> None:
         body = json.dumps(payload).encode()
         self.send_response(status)
         self.send_header("Content-Type", "application/json")
+        self.send_no_cache_headers()
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
@@ -72,6 +88,7 @@ class Handler(SimpleHTTPRequestHandler):
         body = path.read_bytes()
         self.send_response(200)
         self.send_header("Content-Type", "application/json")
+        self.send_no_cache_headers()
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)

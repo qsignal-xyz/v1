@@ -33,6 +33,7 @@ broadcast/
 !4_runtime/app/history_backtest.json
 !4_runtime/app/intraday_events.json
 !4_runtime/app/live_signals.json
+!4_runtime/app/report_commits.json
 !4_runtime/app/tx_activity.json
 4_runtime/send/
 logs/

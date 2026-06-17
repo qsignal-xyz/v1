@@ -11,6 +11,7 @@ APP_DATA = ROOT / "4_runtime/app"
 STATE_PATH = APP_DATA / "refresh_state.json"
 HISTORY_PATH = APP_DATA / "history_backtest.json"
 AI_PATH = APP_DATA / "ai_reports.json"
+REPORT_COMMITS_PATH = APP_DATA / "report_commits.json"
 
 
 def now_utc() -> datetime:
@@ -50,6 +51,17 @@ def latest_ai_source_day() -> str:
     if source_day:
         return str(source_day)
     return ""
+
+
+def report_commit_due(target_day: str) -> bool:
+    commits = read_json(REPORT_COMMITS_PATH, {})
+    reports = commits.get("reports") or []
+    for report in reports:
+        if str(report.get("date") or "") != target_day:
+            continue
+        if report.get("tx_hash") and report.get("status") in {"committed", "submitted"}:
+            return False
+    return True
 
 
 def refresh_due(target_day: str) -> bool:
@@ -111,9 +123,26 @@ def run_daily(target_day: str) -> int:
     return result.returncode
 
 
+def run_publish(target_day: str) -> int:
+    result = subprocess.run(
+        ["python3", "scripts/publish_daily_report.py", "--date", target_day],
+        cwd=str(ROOT),
+        text=True,
+        capture_output=True,
+        timeout=300,
+    )
+    print(result.stdout, end="")
+    if result.stderr:
+        print(result.stderr, end="")
+    return result.returncode
+
+
 def main() -> int:
     target_day = latest_complete_day(now_utc())
     if not refresh_due(target_day):
+        if report_commit_due(target_day):
+            print(f"{now_utc().isoformat()} render daily report commit due for {target_day}")
+            return run_publish(target_day)
         print(f"{now_utc().isoformat()} render daily refresh skipped; target {target_day} already current")
         return 0
     print(f"{now_utc().isoformat()} render daily refresh due for {target_day}")
