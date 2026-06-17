@@ -790,10 +790,23 @@ async function loadTxActivity() {
 }
 
 let mntCandles = null;
+function candlePriceFallback() {
+  const candles = mntCandles?.candles || [];
+  const latest = candles[candles.length - 1];
+  if (!latest || !Number.isFinite(Number(latest.c))) return null;
+  const first = candles[0];
+  const firstClose = Number(first?.c);
+  const pct24h = firstClose ? ((Number(latest.c) / firstClose) - 1) * 100 : 0;
+  return { price: Number(latest.c), ts: Number(latest.t) + 36e5, pct24h, source: "candles" };
+}
+
 async function loadMntCandles() {
   try {
     const r = await fetch(`./_3_live/mnt_candles.json?v=${Date.now()}`);
-    if (r.ok) mntCandles = await r.json();
+    if (r.ok) {
+      mntCandles = await r.json();
+      if (!mntLivePrice) mntLivePrice = candlePriceFallback();
+    }
   } catch (e) { console.warn("mnt_candles.json unavailable", e); }
 }
 
@@ -856,7 +869,8 @@ function renderCandles(windowStart, windowEnd, chartX) {
   if (!chart || !mntCandles?.candles?.length) return;
   const candles = mntCandles.candles.filter((c) => c.t + 36e5 > windowStart && c.t < windowEnd);
   if (!candles.length) return;
-  const lp = mntLivePrice?.price;
+  const livePrice = mntLivePrice || candlePriceFallback();
+  const lp = livePrice?.price;
   const allLows = candles.map((c) => c.l);
   const allHighs = candles.map((c) => c.h);
   if (lp) { allLows.push(lp); allHighs.push(lp); }
@@ -896,8 +910,8 @@ function renderCandles(windowStart, windowEnd, chartX) {
   let liveTag = "";
   if (lp) {
     const y = pY(lp);
-    const cls24 = (mntLivePrice.pct24h || 0) >= 0 ? "positive" : "negative";
-    liveTag = `<div class="price-now-tag" style="top:${y.toFixed(2)}%"><b>$${lp.toFixed(4)}</b></div>`;
+    const pct = Number.isFinite(livePrice?.pct24h) ? ` <span>${livePrice.pct24h >= 0 ? "+" : ""}${livePrice.pct24h.toFixed(2)}%</span>` : "";
+    liveTag = `<div class="price-now-tag" style="top:${y.toFixed(2)}%"><b>$${lp.toFixed(4)}</b>${pct}</div>`;
   }
   const existing = chart.querySelector(".price-layer");
   if (existing) existing.remove();
