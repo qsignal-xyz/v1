@@ -146,7 +146,13 @@ def main() -> int:
         print(f"{now_utc().isoformat()} render daily refresh skipped; target {target_day} already current")
         return 0
     print(f"{now_utc().isoformat()} render daily refresh due for {target_day}")
-    return run_daily(target_day)
+    result = run_daily(target_day)
+    if result != 0:
+        return result
+    if report_commit_due(target_day):
+        print(f"{now_utc().isoformat()} render daily report commit due for {target_day}")
+        return run_publish(target_day)
+    return 0
 
 
 if __name__ == "__main__":

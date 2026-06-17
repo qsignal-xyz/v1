@@ -12,5 +12,7 @@ services:
         value: https://qsignal.xyz
       - key: QSIGNAL_LEDGER_ADDRESS
         value: 0x0000000c5c652995bdcAe8e78902414A00AF8983
+      - key: PK_MANTLE_QSIGNAL
+        sync: false
       - key: QSIGNAL_RENDER_REFRESH_SECONDS
         value: "300"

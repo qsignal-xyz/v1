@@ -248,13 +248,17 @@ def run(date: str | None = None, dry_run: bool = False) -> dict[str, Any]:
     else:
         private_key = read_key("PK_MANTLE_QSIGNAL") or read_key("QSIGNAL_LEDGER_PRIVATE_KEY")
         if not private_key:
-            record = {
-                **base,
-                "status": "pending",
-                "note": "ledger transaction pending",
+            return {
+                "status": "failed",
+                "error": "missing PK_MANTLE_QSIGNAL or QSIGNAL_LEDGER_PRIVATE_KEY",
+                "record": base,
             }
         elif not cfg["ledger_address"]:
-            record = {**base, "status": "failed", "error": "QSIGNAL_LEDGER_ADDRESS is not configured"}
+            return {
+                "status": "failed",
+                "error": "QSIGNAL_LEDGER_ADDRESS is not configured",
+                "record": base,
+            }
         else:
             sent = send_commit(cfg["rpc_url"], cfg["ledger_address"], signal_hash, report_uri, private_key)
             tx_hash = sent["tx_hash"]
@@ -265,8 +269,7 @@ def run(date: str | None = None, dry_run: bool = False) -> dict[str, Any]:
                 "explorer_url": EXPLORER_TX + tx_hash,
             }
     write_json(OUT_PATH, upsert_record(data, record))
-    status = "skipped_missing_key" if record["status"] == "pending" and not record.get("tx_hash") else record["status"]
-    return {"status": status, "record": record}
+    return {"status": record["status"], "record": record}
 
 
 def main() -> int:
@@ -276,7 +279,8 @@ def main() -> int:
     args = parser.parse_args()
     result = run(date=args.date, dry_run=args.dry_run)
     print(json.dumps(result, indent=2, sort_keys=True))
-    return 1 if result.get("status") == "failed" else 0
+    ok_statuses = {"already_committed", "committed", "dry_run", "submitted"}
+    return 0 if result.get("status") in ok_statuses else 1
 
 
 if __name__ == "__main__":
