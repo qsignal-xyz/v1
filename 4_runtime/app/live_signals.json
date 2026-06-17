@@ -1,119 +1,119 @@
 {
-  "generated_at": "2026-06-16T15:22:48+00:00",
+  "generated_at": "2026-06-17T10:51:22+00:00",
   "window": "24h",
   "state": {
-    "generated_at": "2026-06-16T15:22:48+00:00",
+    "generated_at": "2026-06-17T10:51:22+00:00",
     "mnt": {
-      "price": 0.5629,
-      "change_1h": -0.005652711535064636,
-      "change_6h": -0.024774774774774966,
-      "change_24h": -0.02931539920675985,
-      "volume_last_hour_usd": 193155.32293,
-      "volume_ratio_vs_24h_median": 0.9087865579372397
+      "price": 0.5519,
+      "change_1h": 0.002725290697674243,
+      "change_6h": -0.026287932251235047,
+      "change_24h": -0.043003294607248166,
+      "volume_last_hour_usd": 97464.19107,
+      "volume_ratio_vs_24h_median": 0.3895784223715658
     },
     "open_interest": {
-      "latest": 63715462.4,
-      "change_6h": -0.021284820068602217,
-      "change_24h": -0.016822362847657146
+      "latest": 63989939.6,
+      "change_6h": 0.002937977844698292,
+      "change_24h": -0.019454801276659772
     },
     "funding": {
-      "latest": 6.204e-05,
-      "avg_24h": -6.069999999999997e-06
+      "latest": -2.554e-05,
+      "avg_24h": -7.571e-05
     },
     "market_context": {
-      "btc_change_24h": -0.02274579073515659,
-      "eth_change_24h": -0.036186510969798524,
-      "mnt_vs_btc_24h": -0.006569608471603261
+      "btc_change_24h": -0.02472172081829127,
+      "eth_change_24h": -0.012157241087013548,
+      "mnt_vs_btc_24h": -0.018281573788956895
     },
     "onchain": {
-      "alerts_24h": 84,
-      "net_flow_usd": 72666169.07644933,
-      "inflow_usd": 77186299.88420433,
-      "outflow_usd": 4520130.807755,
+      "alerts_24h": 78,
+      "net_flow_usd": 110356973.63279216,
+      "inflow_usd": 123409372.93981916,
+      "outflow_usd": 13052399.307027001,
       "types": {
-        "bridgeIn": 10,
-        "stableTransfer": 70,
-        "bridgeOut": 4
+        "stableTransfer": 60,
+        "bridgeIn": 9,
+        "bridgeOut": 9
       }
     }
   },
   "signals": [
     {
-      "id": "perp_market:mnt_price_momentum:2026-06-16:15:22:48",
-      "timestamp": "2026-06-16:15:22:48",
+      "id": "perp_market:mnt_price_momentum:2026-06-17:10:51:22",
+      "timestamp": "2026-06-17:10:51:22",
       "type": "perp_market",
       "severity": "low",
       "label": "MNT price momentum",
-      "value": "-0.57%",
-      "detail": "MNTUSDT perps trade at $0.5629; 1h -0.57%, 6h -2.48%, 24h -2.93%.",
+      "value": "+0.27%",
+      "detail": "MNTUSDT perps trade at $0.5519; 1h +0.27%, 6h -2.63%, 24h -4.30%.",
       "evidence": [
-        "price $0.5629",
-        "1h -0.57%",
-        "6h -2.48%",
-        "24h -2.93%"
+        "price $0.5519",
+        "1h +0.27%",
+        "6h -2.63%",
+        "24h -4.30%"
       ],
       "proposed_action": "Use as market context; daily model still controls allocation.",
       "source": "bybit/onchain-local"
     },
     {
-      "id": "perp_market:open_interest_shift:2026-06-16:15:22:48",
-      "timestamp": "2026-06-16:15:22:48",
+      "id": "perp_market:open_interest_shift:2026-06-17:10:51:22",
+      "timestamp": "2026-06-17:10:51:22",
       "type": "perp_market",
       "severity": "low",
       "label": "Open interest shift",
-      "value": "-2.13%",
-      "detail": "MNT open interest changed -2.13% over 6h and -1.68% over 24h.",
+      "value": "+0.29%",
+      "detail": "MNT open interest changed +0.29% over 6h and -1.95% over 24h.",
       "evidence": [
-        "OI 63715462",
-        "6h -2.13%",
-        "24h -1.68%"
+        "OI 63989940",
+        "6h +0.29%",
+        "24h -1.95%"
       ],
       "proposed_action": "Rising OI confirms leverage entering; falling OI means price moves may be less durable.",
       "source": "bybit/onchain-local"
     },
     {
-      "id": "perp_market:funding_pressure:2026-06-16:15:22:48",
-      "timestamp": "2026-06-16:15:22:48",
+      "id": "perp_market:funding_pressure:2026-06-17:10:51:22",
+      "timestamp": "2026-06-17:10:51:22",
       "type": "perp_market",
       "severity": "low",
       "label": "Funding pressure",
-      "value": "+0.01%",
-      "detail": "Latest 8h MNT funding is +0.01%; recent 24h average is -0.00%.",
+      "value": "-0.00%",
+      "detail": "Latest 8h MNT funding is -0.00%; recent 24h average is -0.01%.",
       "evidence": [
-        "latest +0.01%",
-        "24h avg -0.00%"
+        "latest -0.00%",
+        "24h avg -0.01%"
       ],
       "proposed_action": "Crowded positive funding weakens new longs; negative funding can support contrarian longs if daily signal agrees.",
       "source": "bybit/onchain-local"
     },
     {
-      "id": "market_context:mnt_vs_btc_beta_gap:2026-06-16:15:22:48",
-      "timestamp": "2026-06-16:15:22:48",
+      "id": "market_context:mnt_vs_btc_beta_gap:2026-06-17:10:51:22",
+      "timestamp": "2026-06-17:10:51:22",
       "type": "market_context",
       "severity": "low",
       "label": "MNT vs BTC beta gap",
-      "value": "-0.66%",
-      "detail": "BTC 24h -2.27%, ETH 24h -3.62%, MNT minus BTC -0.66%.",
+      "value": "-1.83%",
+      "detail": "BTC 24h -2.47%, ETH 24h -1.22%, MNT minus BTC -1.83%.",
       "evidence": [
-        "BTC -2.27%",
-        "ETH -3.62%",
-        "MNT-BTC -0.66%"
+        "BTC -2.47%",
+        "ETH -1.22%",
+        "MNT-BTC -1.83%"
       ],
       "proposed_action": "If MNT lags in a risk-on tape, wait for confirmation; if it outperforms with inflows, prefer long exposure.",
       "source": "bybit/onchain-local"
     },
     {
-      "id": "onchain_flow:24h_on-chain_flow:2026-06-16:15:22:48",
-      "timestamp": "2026-06-16:15:22:48",
+      "id": "onchain_flow:24h_on-chain_flow:2026-06-17:10:51:22",
+      "timestamp": "2026-06-17:10:51:22",
       "type": "onchain_flow",
       "severity": "medium",
       "label": "24h on-chain flow",
-      "value": "+$72.67M",
-      "detail": "84 on-chain alerts; inflows +$77.19M, outflows -$4.52M.",
+      "value": "+$110.36M",
+      "detail": "78 on-chain alerts; inflows +$123.41M, outflows -$13.05M.",
       "evidence": [
-        "alerts 84",
-        "inflows +$77.19M",
-        "outflows -$4.52M"
+        "alerts 78",
+        "inflows +$123.41M",
+        "outflows -$13.05M"
       ],
       "proposed_action": "Use as confirmation or warning around the daily signal.",
       "source": "bybit/onchain-local"

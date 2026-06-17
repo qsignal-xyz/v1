@@ -1,6 +1,52 @@
 {
-  "generated_at": "2026-06-16T15:23:47+00:00",
+  "generated_at": "2026-06-17T10:52:18+00:00",
   "reports": [
+    {
+      "id": "ai:20260617105218",
+      "generated_at": "2026-06-17T10:52:18+00:00",
+      "timestamp": "2026-06-17:10:52:18",
+      "cooldown_until": "2026-06-17T10:53:18+00:00",
+      "source_daily_date": "2026-06-16",
+      "source_history_generated_at": "2026-06-17T10:51:20.479934+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy with No Active Directional Signals",
+        "stance": "yield",
+        "confidence": 65.0,
+        "summary": "No fired directional edge. Best yield: USDC on aave-v3 at 5.20% APY.",
+        "why": [
+          "active_signal_count is 0",
+          "active_factors are empty",
+          "Current daily action is yield"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3 (5.20% APY)",
+          "Monitor for new signals",
+          "Maintain yield position"
+        ],
+        "risks": [
+          "Yield rate fluctuations",
+          "aave-v3 smart contract risk",
+          "Potential rapid signal changes"
+        ],
+        "evidence": [
+          "current_daily.active_signal_count: 0",
+          "current_daily.active_factors: []",
+          "yield_options.best.apy: 5.20%",
+          "current_daily.action: yield"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 78,
+        "daily_days": 7
+      }
+    },
     {
       "id": "ai:20260616152347",
       "generated_at": "2026-06-16T15:23:47+00:00",
