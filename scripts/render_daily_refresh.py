@@ -12,6 +12,7 @@ STATE_PATH = APP_DATA / "refresh_state.json"
 HISTORY_PATH = APP_DATA / "history_backtest.json"
 AI_PATH = APP_DATA / "ai_reports.json"
 REPORT_COMMITS_PATH = APP_DATA / "report_commits.json"
+REPORT_COMMIT_START_DAY = "2026-06-14"
 
 
 def now_utc() -> datetime:
@@ -66,6 +67,10 @@ def report_commit_due(target_day: str) -> bool:
 
 def report_commit_backlog(target_day: str) -> list[str]:
     dates = {target_day}
+    for row in read_json(HISTORY_PATH, {}).get("past_signals") or []:
+        day = str(row.get("date") or "")
+        if REPORT_COMMIT_START_DAY <= day <= target_day:
+            dates.add(day)
     for report in read_json(AI_PATH, {}).get("reports") or []:
         source_day = str(report.get("source_daily_date") or "")
         if source_day and source_day <= target_day:
