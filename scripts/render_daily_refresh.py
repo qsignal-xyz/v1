@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import subprocess
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -29,8 +29,8 @@ def write_state(payload: dict[str, Any]) -> None:
     STATE_PATH.write_text(json.dumps(payload, indent=2, sort_keys=True))
 
 
-def latest_complete_day(now: datetime) -> str:
-    return (now.date() - timedelta(days=1)).isoformat()
+def current_report_day(now: datetime) -> str:
+    return now.date().isoformat()
 
 
 def latest_history_day() -> str:
@@ -138,7 +138,7 @@ def run_publish(target_day: str) -> int:
 
 
 def main() -> int:
-    target_day = latest_complete_day(now_utc())
+    target_day = current_report_day(now_utc())
     if not refresh_due(target_day):
         if report_commit_due(target_day):
             print(f"{now_utc().isoformat()} render daily report commit due for {target_day}")

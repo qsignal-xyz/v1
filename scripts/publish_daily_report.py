@@ -244,7 +244,7 @@ def run(date: str | None = None, dry_run: bool = False) -> dict[str, Any]:
         "status": "dry_run" if dry_run else "pending",
     }
     if dry_run:
-        record = base
+        return {"status": "dry_run", "record": base}
     else:
         private_key = read_key("PK_MANTLE_QSIGNAL") or read_key("QSIGNAL_LEDGER_PRIVATE_KEY")
         if not private_key:

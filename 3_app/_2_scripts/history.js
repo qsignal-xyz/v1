@@ -116,9 +116,12 @@ function reportForDay(day) {
   const active = day.active_factors.map(factorLine);
   const rejected = day.rejected_factors.map(factorLine);
   const action = day.direction > 0 ? "MNT long exposure." : `Move idle capital to stable yield. Suggested route: ${yieldShortText()}.`;
+  const pending = day.report_status === "current_day_pending_result"
+    ? " Current-day report; 1d result posts after the next daily close."
+    : "";
   return [
     `${day.date} · ${actionLabel(day)}`,
-    `Daily recommendation: ${actionLabel(day)}. Score ${fmtScore(day.net_score)} from ${day.active_signal_count} active model signal(s). ${day.direction > 0 ? "" : yieldEvidence(day)}`,
+    `Daily recommendation: ${actionLabel(day)}. Score ${fmtScore(day.net_score)} from ${day.active_signal_count} active model signal(s).${pending} ${day.direction > 0 ? "" : yieldEvidence(day)}`,
     action,
     `Active model signals:\n${active.join("\n") || "none passed health filters"}\n\nRejected model signals:\n${rejected.join("\n") || "none"}\n\nWatched but not fired:\n${day.not_fired.join(", ") || "none"}\n\nYield context:\n${yieldEvidence(day)}`,
   ];
@@ -262,7 +265,7 @@ function shortTx(hash) {
 function commitLink(commit) {
   if (!commit) return `<span class="ledger-pending" title="Daily report has not been anchored yet">pending</span>`;
   if (commit.tx_hash && commit.explorer_url) {
-    return `<a class="ledger-link" href="${escapeHtml(commit.explorer_url)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">tx</a>`;
+    return `<a class="ledger-link" href="${escapeHtml(commit.explorer_url)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">${escapeHtml(shortTx(commit.tx_hash))}</a>`;
   }
   if (commit.tx_hash) {
     return `<a class="ledger-link" href="https://mantlescan.xyz/tx/${escapeHtml(commit.tx_hash)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">${escapeHtml(shortTx(commit.tx_hash))}</a>`;
@@ -270,13 +273,13 @@ function commitLink(commit) {
   return `<span class="ledger-pending" title="${escapeHtml(commit.report_hash || "Daily report anchor pending")}">pending</span>`;
 }
 
-function latestCompleteUtcDay() {
-  return new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+function currentUtcDay() {
+  return new Date().toISOString().slice(0, 10);
 }
 
 function refreshHistoryIfStale() {
   const latest = historyData?.past_signals?.[0]?.date || "";
-  if (latest && latest < latestCompleteUtcDay()) {
+  if (latest && latest < currentUtcDay()) {
     loadHistory().catch((error) => console.error("history_backtest.json refresh failed", error));
   }
 }

@@ -71,6 +71,22 @@ def build_yield_map(replay: pd.DataFrame, yields: pd.DataFrame) -> dict[str, dic
     }
 
 
+def yield_info_for_date(yields: pd.DataFrame, date: str) -> dict[str, object] | None:
+    if yields.empty:
+        return None
+    clean = yields.copy()
+    clean["date"] = clean["timestamp"].dt.strftime("%Y-%m-%d")
+    exact = clean[clean["date"] == date]
+    observed = not exact.empty
+    row = (exact if observed else clean.sort_values("timestamp")).tail(1).iloc[0]
+    apy = float(row["stable_yield_apy"])
+    return {
+        "apy": apy,
+        "daily": float(daily_yield_return(pd.Series([apy])).iloc[0]),
+        "observed": observed,
+    }
+
+
 def build_yield_options(yields: pd.DataFrame, charts: pd.DataFrame) -> dict[str, Any]:
     if yields.empty or charts.empty:
         return {"as_of": None, "basket_apy": 0.0, "basket_tvl_usd": 0.0, "pool_count": 0, "pools": []}
@@ -135,6 +151,7 @@ def build_past_signals(
     health: pd.DataFrame,
     yield_map: dict[str, dict[str, float]],
     daily: pd.DataFrame,
+    yields: pd.DataFrame,
     live_price: dict[str, Any] | None,
 ) -> list[dict[str, object]]:
     universe = sorted(health["signal_name"].dropna().unique())
@@ -176,6 +193,30 @@ def build_past_signals(
                 "not_fired": not_fired,
             }
         )
+    today = pd.Timestamp.utcnow().strftime("%Y-%m-%d")
+    latest_date = str(rows[0]["date"]) if rows else ""
+    current_yield = yield_info_for_date(yields, today)
+    if latest_date and latest_date < today and current_yield:
+        rows.insert(
+            0,
+            {
+                "date": today,
+                "action": "yield",
+                "direction": 0,
+                "net_score": 0.0,
+                "active_signal_count": 0,
+                "active_signals": [],
+                "fwd_ret_1d": None,
+                "dir_ret_1d": None,
+                "yield_ret_1d": current_yield["daily"],
+                "yield_apy": current_yield["apy"],
+                "yield_observed": current_yield["observed"],
+                "report_status": "current_day_pending_result",
+                "active_factors": [],
+                "rejected_factors": [],
+                "not_fired": universe[:8],
+            },
+        )
     return rows
 
 
@@ -216,7 +257,7 @@ def main() -> None:
     out = {
         "generated_at": pd.Timestamp.utcnow().isoformat(),
         "yield_options": yield_options,
-        "past_signals": build_past_signals(replay, health, build_yield_map(replay, yields), daily, latest_live_mnt_price()),
+        "past_signals": build_past_signals(replay, health, build_yield_map(replay, yields), daily, yields, latest_live_mnt_price()),
         "backtest": backtest,
     }
     OUT.write_text(json.dumps(out, indent=2))
