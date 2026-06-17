@@ -261,16 +261,17 @@ function reportCommitFor(date) {
 
 function shortTx(hash) {
   if (!hash) return "";
-  return `${hash.slice(0, 8)}...${hash.slice(-4)}`;
+  return `${hash.slice(0, 12)}...${hash.slice(-6)}`;
 }
 
 function commitLink(commit) {
   if (!commit) return `<span class="ledger-pending" title="Daily report has not been anchored yet">pending</span>`;
+  const block = commit.block_number ? `<span class="ledger-block">block ${escapeHtml(String(commit.block_number))}</span>` : "";
   if (commit.tx_hash && commit.explorer_url) {
-    return `<a class="ledger-link" href="${escapeHtml(commit.explorer_url)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">${escapeHtml(shortTx(commit.tx_hash))}</a>`;
+    return `<a class="ledger-link" href="${escapeHtml(commit.explorer_url)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">tx ${escapeHtml(shortTx(commit.tx_hash))}</a>${block}`;
   }
   if (commit.tx_hash) {
-    return `<a class="ledger-link" href="https://mantlescan.xyz/tx/${escapeHtml(commit.tx_hash)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">${escapeHtml(shortTx(commit.tx_hash))}</a>`;
+    return `<a class="ledger-link" href="https://mantlescan.xyz/tx/${escapeHtml(commit.tx_hash)}" target="_blank" rel="noreferrer" title="${escapeHtml(commit.tx_hash)}">tx ${escapeHtml(shortTx(commit.tx_hash))}</a>${block}`;
   }
   return `<span class="ledger-pending" title="${escapeHtml(commit.report_hash || "Daily report anchor pending")}">pending</span>`;
 }
