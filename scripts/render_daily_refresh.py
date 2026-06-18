@@ -72,6 +72,25 @@ def report_commit_due(target_day: str) -> bool:
     return True
 
 
+def committed_report_key(record: dict[str, Any]) -> tuple[str, str] | None:
+    if not record.get("tx_hash") or record.get("status") not in {"committed", "submitted"}:
+        return None
+    date = str(record.get("date") or "")
+    report_hash = str(record.get("report_hash") or "")
+    if not date or not report_hash:
+        return None
+    return date, report_hash
+
+
+def report_commit_rank(record: dict[str, Any]) -> tuple[int, int, str]:
+    status_rank = 1 if record.get("status") == "committed" else 0
+    block_number = record.get("block_number")
+    if not isinstance(block_number, int):
+        block_number = -1
+    committed_at = str(record.get("committed_at") or "")
+    return status_rank, block_number, committed_at
+
+
 def sync_public_report_commits() -> None:
     url = "https://qsignal.xyz/report_commits.json"
     try:
@@ -82,29 +101,31 @@ def sync_public_report_commits() -> None:
         return
 
     data = read_json(REPORT_COMMITS_PATH, {"reports": []})
-    reports = list(data.get("reports") or [])
-    existing = {
-        (str(item.get("date") or ""), str(item.get("report_hash") or ""))
-        for item in reports
-        if item.get("tx_hash") and item.get("status") in {"committed", "submitted"}
-    }
-    added = 0
-    for record in public.get("reports") or []:
-        if not record.get("tx_hash") or record.get("status") not in {"committed", "submitted"}:
-            continue
-        key = (str(record.get("date") or ""), str(record.get("report_hash") or ""))
-        if not key[0] or not key[1] or key in existing:
-            continue
-        reports.append(record)
-        existing.add(key)
-        added += 1
+    by_key: dict[tuple[str, str], dict[str, Any]] = {}
+    changed = False
 
-    if added:
+    for record in data.get("reports") or []:
+        key = committed_report_key(record)
+        if key is None:
+            continue
+        by_key[key] = record
+
+    for record in public.get("reports") or []:
+        key = committed_report_key(record)
+        if key is None:
+            continue
+        existing = by_key.get(key)
+        if existing is None or report_commit_rank(record) > report_commit_rank(existing):
+            by_key[key] = record
+            changed = True
+
+    if changed:
+        reports = list(by_key.values())
         reports.sort(key=lambda item: str(item.get("date") or ""), reverse=True)
         data["reports"] = reports[:365]
         data["generated_at"] = now_utc().isoformat()
         write_json(REPORT_COMMITS_PATH, data)
-        print(f"{now_utc().isoformat()} synced {added} public report commit(s)")
+        print(f"{now_utc().isoformat()} synced public report commits")
 
 
 def report_commit_backlog(target_day: str) -> list[str]:
