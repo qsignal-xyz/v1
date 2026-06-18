@@ -160,11 +160,15 @@ function renderPast() {
   const shown = rows.slice(start, start + PAST_PAGE_SIZE);
   $("pastRows").innerHTML = shown.map((day, i) => {
     const commit = reportCommitFor(day.date);
+    const aiReport = aiReportForDay(day.date);
+    const aiBody = aiReport?.report || {};
     return `<tr class="past-parent" id="daily-${escapeHtml(day.date)}" data-i="${start + i}">
     <td>${day.date}</td>
     <td class="signal-cell">${escapeHtml(signalLabel(day))}</td>
     <td class="${actionClass(day)}">${escapeHtml(actionLabel(day))}</td>
     <td>${fmtScore(day.net_score)}</td>
+    <td class="action action-${escapeHtml(aiBody.stance || "watch")}">${escapeHtml(aiBody.stance || "-")}</td>
+    <td>${aiConfidenceText(aiReport)}</td>
     <td class="r ${valueClass(fmtPct(day.dir_ret_1d))}">${fmtPct(day.dir_ret_1d)}</td>
     <td>${commitLink(commit)}</td>
     <td><button class="report-btn" data-report="${start + i}">report</button></td>
@@ -172,7 +176,10 @@ function renderPast() {
   }).join("");
   document.querySelectorAll(".report-btn").forEach((button) => button.addEventListener("click", (event) => {
     event.stopPropagation();
-    openReport(reportForDay(rows[Number(button.dataset.report)]), "Daily Signal Report");
+    const day = rows[Number(button.dataset.report)];
+    const aiReport = aiReportForDay(day.date);
+    if (aiReport) openAiReport(aiReport);
+    else openReport(reportForDay(day), "Daily Signal Report");
   }));
   $("pastPager").innerHTML =
     `<button id="firstPast" ${pastPage === 0 ? "disabled" : ""}>First</button>` +
@@ -189,6 +196,19 @@ function renderPast() {
 function aiReportSourceText(report) {
   const counts = report.source_counts || {};
   return `${counts.live_signals || 0} live / ${counts.intraday_alerts || 0} events / ${counts.daily_days || 0} daily`;
+}
+
+function aiReportForDay(date) {
+  if (typeof aiReports !== "function") return null;
+  return aiReports().find((report) => report.source_daily_date === date) || null;
+}
+
+function aiConfidenceText(report) {
+  const value = report?.report?.confidence;
+  if (value === null || value === undefined || value === "") return "-";
+  const numeric = Number(value);
+  if (Number.isFinite(numeric)) return `${Math.round(numeric)}/100`;
+  return `${escapeHtml(String(value))}/100`;
 }
 
 function renderAiReportHistory() {

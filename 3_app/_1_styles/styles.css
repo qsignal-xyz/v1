@@ -765,8 +765,8 @@ th:nth-child(5), td:nth-child(5) { text-align: right; }
 .past-table tr:hover td { background: rgba(255,255,255,.04); }
 .past-table .r { text-align: right; }
 .past-table .signal-cell { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.past-table td:nth-child(3), .past-table td:nth-child(4), .past-table td:nth-child(6), .past-table td:nth-child(7) { text-align: center; }
-.past-table th:nth-child(3), .past-table th:nth-child(4), .past-table th:nth-child(6), .past-table th:nth-child(7) { text-align: center; }
+.past-table td:nth-child(3), .past-table td:nth-child(4), .past-table td:nth-child(5), .past-table td:nth-child(6), .past-table td:nth-child(8), .past-table td:nth-child(9) { text-align: center; }
+.past-table th:nth-child(3), .past-table th:nth-child(4), .past-table th:nth-child(5), .past-table th:nth-child(6), .past-table th:nth-child(8), .past-table th:nth-child(9) { text-align: center; }
 .ledger-link, .ledger-pending { white-space: nowrap; font-size: 10px; }
 .ledger-pending { color: var(--text-dim); }
 
