@@ -12,6 +12,11 @@ while true; do
   else
     echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) render light refresh failed"
   fi
+  if python3 scripts/render_intraday_refresh.py; then
+    echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) render intraday refresh check ok"
+  else
+    echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) render intraday refresh check failed"
+  fi
   if python3 scripts/render_daily_refresh.py; then
     echo "$(date -u +%Y-%m-%dT%H:%M:%SZ) render daily refresh check ok"
   else
