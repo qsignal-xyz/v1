@@ -18,16 +18,20 @@ GENERATED_PAYLOADS = {
     "history_backtest.json",
     "intraday_events.json",
     "live_signals.json",
+    "refresh_state.json",
     "report_commits.json",
     "tx_activity.json",
 }
 DAILY_REFRESH_PATHS = {
     "/",
+    "/live",
+    "/live/",
     "/reports",
     "/reports/",
     "/history_backtest.json",
     "/ai_reports.json",
     "/intraday_events.json",
+    "/live_signals.json",
     "/report_commits.json",
 }
 DAILY_REFRESH_LOCK = threading.Lock()

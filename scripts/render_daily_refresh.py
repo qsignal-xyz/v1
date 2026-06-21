@@ -216,11 +216,23 @@ def run_publish(target_day: str) -> int:
 
 
 def run_publish_backlog(target_day: str) -> int:
+    failures: list[str] = []
     for day in report_commit_backlog(target_day):
         print(f"{now_utc().isoformat()} render daily report commit due for {day}")
         result = run_publish(day)
         if result != 0:
-            return result
+            failures.append(day)
+            print(f"{now_utc().isoformat()} render daily report commit failed for {day}")
+    if failures:
+        state = read_json(STATE_PATH, {})
+        state.update(
+            {
+                "last_publish_failed_at": now_utc().isoformat(),
+                "last_publish_failed_days": failures,
+                "status": "current_publish_failed",
+            }
+        )
+        write_state(state)
     return 0
 
 

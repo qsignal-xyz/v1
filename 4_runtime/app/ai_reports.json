@@ -1,6 +1,97 @@
 {
-  "generated_at": "2026-06-19T00:36:33+00:00",
+  "generated_at": "2026-06-21T00:36:32+00:00",
   "reports": [
+    {
+      "id": "ai:20260621003632",
+      "generated_at": "2026-06-21T00:36:32+00:00",
+      "timestamp": "2026-06-21:00:36:32",
+      "cooldown_until": "2026-06-21T00:37:32+00:00",
+      "source_daily_date": "2026-06-21",
+      "source_history_generated_at": "2026-06-21T00:35:55.384503+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Portfolio Signal: Yield Strategy",
+        "stance": "yield",
+        "confidence": 65.0,
+        "summary": "No directional edge. Best yield: USDC on aave-v3 at 5.36% APY.",
+        "why": [
+          "active_signal_count is 0",
+          "active_factors is empty",
+          "Aave V3 USDC offers highest APY"
+        ],
+        "action": [
+          "Deposit USDC into aave-v3",
+          "Monitor for new signals"
+        ],
+        "risks": [
+          "Yield APYs can fluctuate",
+          "Smart contract risks exist",
+          "Market conditions may change"
+        ],
+        "evidence": [
+          "current_daily.active_signal_count: 0",
+          "current_daily.active_factors: []",
+          "yield_options.best.apy: 5.35726"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 30,
+        "daily_days": 7
+      }
+    },
+    {
+      "id": "ai:20260620003635",
+      "generated_at": "2026-06-20T00:36:35+00:00",
+      "timestamp": "2026-06-20:00:36:35",
+      "cooldown_until": "2026-06-20T00:37:35+00:00",
+      "source_daily_date": "2026-06-20",
+      "source_history_generated_at": "2026-06-20T00:35:58.859626+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy Update",
+        "stance": "yield",
+        "confidence": 75.0,
+        "summary": "No directional edge. Best yield: USDC on aave-v3 at 5.31% APY.",
+        "why": [
+          "Zero active signals today",
+          "No fired directional factors",
+          "System recommends yield action",
+          "Best yield route confirmed"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3",
+          "Maintain current positions",
+          "Monitor for new signals"
+        ],
+        "risks": [
+          "Yield rates may fluctuate",
+          "No directional edge protection",
+          "Past performance \u2260 future results"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "active_factors: []",
+          "best_yield: 5.31% USDC aave-v3",
+          "current_daily.action: yield"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 46,
+        "daily_days": 7
+      }
+    },
     {
       "id": "ai:20260619003633",
       "generated_at": "2026-06-19T00:36:33+00:00",
