@@ -1,6 +1,45 @@
 {
-  "generated_at": "2026-06-18T10:36:08+00:00",
+  "generated_at": "2026-06-21T21:55:10+00:00",
   "reports": [
+    {
+      "block_number": 96974299,
+      "chain_id": 5000,
+      "committed_at": "2026-06-21T21:55:10+00:00",
+      "date": "2026-06-21",
+      "explorer_url": "https://mantlescan.xyz/tx/0x06b29538be2d961597be0afdeb58031585b5bd2f62cdc7a65664757799c62b99",
+      "ledger_address": "0x0000000c5c652995bdcAe8e78902414A00AF8983",
+      "oracle": "0xaA116bf1647Ba3C39579BD25D02172A8Da6B42c0",
+      "report_hash": "0xfd443283c22abb48d586c033f11ae8d12512a4f5f2763abda421449a67f05ef5",
+      "report_uri": "https://qsignal.xyz/reports#daily-2026-06-21",
+      "status": "committed",
+      "tx_hash": "0x06b29538be2d961597be0afdeb58031585b5bd2f62cdc7a65664757799c62b99"
+    },
+    {
+      "block_number": 96974295,
+      "chain_id": 5000,
+      "committed_at": "2026-06-21T21:55:03+00:00",
+      "date": "2026-06-20",
+      "explorer_url": "https://mantlescan.xyz/tx/0x3c0e4697cccf5b54f725eb38d39a2680c2f59fa2581837ce70fe0dc133521502",
+      "ledger_address": "0x0000000c5c652995bdcAe8e78902414A00AF8983",
+      "oracle": "0xaA116bf1647Ba3C39579BD25D02172A8Da6B42c0",
+      "report_hash": "0x0fe24930d8b8be5d5f79cbd2bdf55b6491a45488c681821e08e8842131aab4f1",
+      "report_uri": "https://qsignal.xyz/reports#daily-2026-06-20",
+      "status": "committed",
+      "tx_hash": "0x3c0e4697cccf5b54f725eb38d39a2680c2f59fa2581837ce70fe0dc133521502"
+    },
+    {
+      "block_number": 96865645,
+      "chain_id": 5000,
+      "committed_at": "2026-06-19T09:33:22+00:00",
+      "date": "2026-06-19",
+      "explorer_url": "https://mantlescan.xyz/tx/0x6f170bd88c819bbc972a3f59fa8cfa695262bc295d9247ecd70fcf2529e16aa8",
+      "ledger_address": "0x0000000c5c652995bdcAe8e78902414A00AF8983",
+      "oracle": "0xaA116bf1647Ba3C39579BD25D02172A8Da6B42c0",
+      "report_hash": "0x8fa7f4854ddb8c479b8d186125348ed12cd8212e20b63f428699ef0e04f92c0f",
+      "report_uri": "https://qsignal.xyz/reports#daily-2026-06-19",
+      "status": "committed",
+      "tx_hash": "0x6f170bd88c819bbc972a3f59fa8cfa695262bc295d9247ecd70fcf2529e16aa8"
+    },
     {
       "block_number": 96824328,
       "chain_id": 5000,
