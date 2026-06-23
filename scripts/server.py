@@ -34,9 +34,22 @@ DAILY_REFRESH_PATHS = {
     "/live_signals.json",
     "/report_commits.json",
 }
+LIVE_REFRESH_PATHS = {
+    "/live",
+    "/live/",
+    "/intraday_events.json",
+    "/live_signals.json",
+    "/tx_activity.json",
+    "/_3_live/mnt_candles.json",
+}
 DAILY_REFRESH_LOCK = threading.Lock()
 DAILY_REFRESH_LAST_ATTEMPT = 0.0
 DAILY_REFRESH_RETRY_SECONDS = 300
+LIVE_REFRESH_LOCK = threading.Lock()
+LIVE_REFRESH_LAST_ATTEMPT = 0.0
+LIVE_REFRESH_RETRY_SECONDS = int(os.environ.get("QSIGNAL_LIVE_REFRESH_RETRY_SECONDS", "120"))
+LIVE_MAX_AGE_SECONDS = int(os.environ.get("QSIGNAL_LIVE_MAX_AGE_SECONDS", "900"))
+INTRADAY_MAX_AGE_SECONDS = int(os.environ.get("QSIGNAL_INTRADAY_MAX_AGE_SECONDS", "900"))
 
 
 def parse_script_json(stdout: str) -> dict:
@@ -89,6 +102,27 @@ def utc_today() -> str:
     return datetime.now(timezone.utc).date().isoformat()
 
 
+def parse_runtime_datetime(name: str) -> datetime | None:
+    generated_at = str(read_runtime_json(name).get("generated_at") or "")
+    if not generated_at:
+        return None
+    try:
+        value = datetime.fromisoformat(generated_at.replace("Z", "+00:00"))
+    except ValueError:
+        print(f"runtime generated_at parse failed for {name}: {generated_at}", flush=True)
+        return None
+    if value.tzinfo is None:
+        value = value.replace(tzinfo=timezone.utc)
+    return value.astimezone(timezone.utc)
+
+
+def runtime_age_seconds(name: str) -> int | None:
+    generated = parse_runtime_datetime(name)
+    if generated is None:
+        return None
+    return int((datetime.now(timezone.utc) - generated).total_seconds())
+
+
 def latest_history_day() -> str:
     rows = read_runtime_json("history_backtest.json").get("past_signals") or []
     if not rows:
@@ -117,6 +151,71 @@ def report_commit_due() -> bool:
 def daily_runtime_stale() -> bool:
     today = utc_today()
     return latest_history_day() < today or latest_ai_day() != today or report_commit_due()
+
+
+def live_runtime_stale() -> bool:
+    today = utc_today()
+    live_age = runtime_age_seconds("live_signals.json")
+    intraday_age = runtime_age_seconds("intraday_events.json")
+    intraday_generated = parse_runtime_datetime("intraday_events.json")
+    return (
+        live_age is None
+        or live_age > LIVE_MAX_AGE_SECONDS
+        or intraday_age is None
+        or intraday_age > INTRADAY_MAX_AGE_SECONDS
+        or intraday_generated is None
+        or intraday_generated.date().isoformat() < today
+    )
+
+
+def run_live_refresh_command(command: list[str], timeout: int) -> bool:
+    result = subprocess.run(command, cwd=str(ROOT), text=True, capture_output=True, timeout=timeout)
+    if result.stdout:
+        print(result.stdout[-4000:], end="", flush=True)
+    if result.stderr:
+        print(result.stderr[-4000:], end="", flush=True)
+    if result.returncode != 0:
+        print(f"{datetime.now(timezone.utc).isoformat()} {' '.join(command)} exited {result.returncode}", flush=True)
+        return False
+    return True
+
+
+def maybe_refresh_live_runtime(path: str) -> None:
+    global LIVE_REFRESH_LAST_ATTEMPT
+    if path not in LIVE_REFRESH_PATHS or not live_runtime_stale():
+        return
+    now = time.monotonic()
+    if now - LIVE_REFRESH_LAST_ATTEMPT < LIVE_REFRESH_RETRY_SECONDS:
+        return
+    if not LIVE_REFRESH_LOCK.acquire(blocking=False):
+        return
+    LIVE_REFRESH_LAST_ATTEMPT = now
+    try:
+        print(f"{datetime.now(timezone.utc).isoformat()} stale live runtime; refreshing before serving {path}", flush=True)
+        ok = True
+        for command, timeout in [
+            (["python3", "scripts/fetch_tx_activity.py"], 300),
+            (["python3", "3_app/_3_live/fetch_mnt_candles.py"], 300),
+            (["python3", "scripts/render_intraday_refresh.py"], 900),
+            (["python3", "scripts/generate_live_signals.py"], 300),
+        ]:
+            try:
+                ok = run_live_refresh_command(command, timeout) and ok
+            except subprocess.TimeoutExpired:
+                ok = False
+                print(f"{datetime.now(timezone.utc).isoformat()} {' '.join(command)} timed out", flush=True)
+            except Exception as exc:
+                ok = False
+                print(f"{datetime.now(timezone.utc).isoformat()} {' '.join(command)} failed: {type(exc).__name__}: {exc}", flush=True)
+        if not ok:
+            print(
+                f"{datetime.now(timezone.utc).isoformat()} live refresh before serve incomplete; "
+                f"live_age={runtime_age_seconds('live_signals.json')} "
+                f"intraday_age={runtime_age_seconds('intraday_events.json')}",
+                flush=True,
+            )
+    finally:
+        LIVE_REFRESH_LOCK.release()
 
 
 def maybe_refresh_daily_runtime(path: str) -> None:
@@ -197,6 +296,7 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_GET(self) -> None:
         path = urlparse(self.path).path
+        maybe_refresh_live_runtime(path)
         maybe_refresh_daily_runtime(path)
         name = Path(path).name
         if name in GENERATED_PAYLOADS:

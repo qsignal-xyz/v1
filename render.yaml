@@ -16,3 +16,9 @@ services:
         sync: false
       - key: QSIGNAL_RENDER_REFRESH_SECONDS
         value: "300"
+      - key: QSIGNAL_INTRADAY_REFRESH_SECONDS
+        value: "300"
+      - key: QSIGNAL_LIVE_MAX_AGE_SECONDS
+        value: "900"
+      - key: QSIGNAL_INTRADAY_MAX_AGE_SECONDS
+        value: "900"
