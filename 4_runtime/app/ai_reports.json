@@ -1,6 +1,322 @@
 {
-  "generated_at": "2026-06-23T00:36:51+00:00",
+  "generated_at": "2026-06-30T00:36:38+00:00",
   "reports": [
+    {
+      "id": "ai:20260630003638",
+      "generated_at": "2026-06-30T00:36:38+00:00",
+      "timestamp": "2026-06-30:00:36:38",
+      "cooldown_until": "2026-06-30T00:37:38+00:00",
+      "source_daily_date": "2026-06-30",
+      "source_history_generated_at": "2026-06-30T00:35:56.242179+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy",
+        "stance": "yield",
+        "confidence": 75.0,
+        "summary": "No fired directional edge. Best yield: USDC on aave-v3 at 8.23% APY.",
+        "why": [
+          "active_signal_count is 0",
+          "active_factors array is empty",
+          "USDC on aave-v3 offers highest APY"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3",
+          "Monitor for new signals"
+        ],
+        "risks": [
+          "Yield APY fluctuations",
+          "Smart contract risks",
+          "Single pool concentration"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "active_factors: []",
+          "yield_options.best.apy: 8.23%"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 66,
+        "daily_days": 7
+      }
+    },
+    {
+      "id": "ai:20260629003631",
+      "generated_at": "2026-06-29T00:36:31+00:00",
+      "timestamp": "2026-06-29:00:36:31",
+      "cooldown_until": "2026-06-29T00:37:31+00:00",
+      "source_daily_date": "2026-06-29",
+      "source_history_generated_at": "2026-06-29T00:35:54.363321+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy",
+        "stance": "yield",
+        "confidence": 65.0,
+        "summary": "No directional edge. Best yield: USDC on aave-v3 at 8.33% APY.",
+        "why": [
+          "No active directional signals detected",
+          "Yield observed with 4.23% basket APY",
+          "Historical yield stability with no directional bias"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3 for 8.33% APY",
+          "Monitor for new directional signals",
+          "Review yield options periodically"
+        ],
+        "risks": [
+          "Yield rates may fluctuate",
+          "Market movements not being captured",
+          "Potential APY compression"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "yield_apy: 4.225306672261339",
+          "best yield: USDC on aave-v3 at 8.33% APY"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 39,
+        "daily_days": 7
+      }
+    },
+    {
+      "id": "ai:20260628003637",
+      "generated_at": "2026-06-28T00:36:37+00:00",
+      "timestamp": "2026-06-28:00:36:37",
+      "cooldown_until": "2026-06-28T00:37:37+00:00",
+      "source_daily_date": "2026-06-28",
+      "source_history_generated_at": "2026-06-28T00:35:56.295650+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy",
+        "stance": "yield",
+        "confidence": 75.0,
+        "summary": "No directional edge. Best yield: USDC on aave-v3 at 8.29% APY.",
+        "why": [
+          "No active signals (active_signal_count=0)",
+          "Yield observed with positive daily returns",
+          "Aave V3 USDC offers highest verified APY"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3",
+          "Monitor for new signals",
+          "Avoid directional trades"
+        ],
+        "risks": [
+          "Yield APY fluctuations",
+          "Smart contract risk",
+          "Stablecoin peg risk"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "yield_ret_1d: 0.000113",
+          "best yield: USDC 8.29% APY"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 35,
+        "daily_days": 7
+      }
+    },
+    {
+      "id": "ai:20260627003654",
+      "generated_at": "2026-06-27T00:36:54+00:00",
+      "timestamp": "2026-06-27:00:36:54",
+      "cooldown_until": "2026-06-27T00:37:54+00:00",
+      "source_daily_date": "2026-06-27",
+      "source_history_generated_at": "2026-06-27T00:36:00.914474+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy: USDC on Aave V3 at 8.51% APY",
+        "stance": "yield",
+        "confidence": 75.0,
+        "summary": "No directional edge. Best yield: USDC on aave-v3 at 8.51% APY.",
+        "why": [
+          "No active directional signals today",
+          "Yield observed at 4.22% APY basket average",
+          "USDC on aave-v3 offers highest yield"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3 for yield",
+          "Monitor for new directional signals"
+        ],
+        "risks": [
+          "Yield rates may fluctuate",
+          "Smart contract risks in DeFi",
+          "Limited capacity on highest-yield route"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "active_factors: []",
+          "best yield: USDC on aave-v3 at 8.51% APY"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 49,
+        "daily_days": 7
+      }
+    },
+    {
+      "id": "ai:20260626003701",
+      "generated_at": "2026-06-26T00:37:01+00:00",
+      "timestamp": "2026-06-26:00:37:01",
+      "cooldown_until": "2026-06-26T00:38:01+00:00",
+      "source_daily_date": "2026-06-26",
+      "source_history_generated_at": "2026-06-26T00:36:13.210766+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Signal Report",
+        "stance": "yield",
+        "confidence": 65.0,
+        "summary": "No directional edge. Best yield: USDC on aave-v3 at 8.35% APY.",
+        "why": [
+          "No active directional signals (0 active_signal_count)",
+          "Yield observed with 0.0174% daily return",
+          "Historical ecosystem outflow risks have subsided"
+        ],
+        "action": [
+          "Deploy to USDC on aave-v3 (8.35% APY)",
+          "Monitor for new directional signals",
+          "Review intraday stablecoin flows"
+        ],
+        "risks": [
+          "Yield rates subject to change",
+          "MNT price volatility persists",
+          "Limited capacity in highest-yield pool"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "best_yield: 8.35% APY (aave-v3 USDC)",
+          "yield_ret_1d: 0.000173",
+          "rejected_factors: []"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 95,
+        "daily_days": 7
+      }
+    },
+    {
+      "id": "ai:20260625003634",
+      "generated_at": "2026-06-25T00:36:34+00:00",
+      "timestamp": "2026-06-25:00:36:34",
+      "cooldown_until": "2026-06-25T00:37:34+00:00",
+      "source_daily_date": "2026-06-25",
+      "source_history_generated_at": "2026-06-25T00:36:00.289798+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy Update",
+        "stance": "yield",
+        "confidence": 75.0,
+        "summary": "No directional edge. Maintain USDC on aave-v3 at 8.34% APY.",
+        "why": [
+          "No active signals or factors present",
+          "Best yield route is USDC on aave-v3",
+          "Ecosystem outflow risk has subsided"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3",
+          "Target 8.34% APY",
+          "Monitor for new signals"
+        ],
+        "risks": [
+          "Yield rate fluctuations",
+          "Smart contract risk",
+          "USDC depeg potential"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "active_factors: []",
+          "Best yield: USDC on aave-v3 at 8.34% APY",
+          "Current action: yield"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 6,
+        "intraday_alerts": 67,
+        "daily_days": 7
+      }
+    },
+    {
+      "id": "ai:20260624003642",
+      "generated_at": "2026-06-24T00:36:42+00:00",
+      "timestamp": "2026-06-24:00:36:42",
+      "cooldown_until": "2026-06-24T00:37:42+00:00",
+      "source_daily_date": "2026-06-24",
+      "source_history_generated_at": "2026-06-24T00:35:55.658304+00:00",
+      "models": [
+        "google/gemini-2.5-flash",
+        "deepseek/deepseek-chat-v3-0324",
+        "qwen/qwen3-32b"
+      ],
+      "merge_model": "deepseek/deepseek-chat-v3-0324",
+      "report": {
+        "title": "Mantle Yield Strategy Update",
+        "stance": "yield",
+        "confidence": 75.0,
+        "summary": "No fired directional edge. Best yield: USDC on aave-v3 at 8.05% APY.",
+        "why": [
+          "No active signals or directional factors today",
+          "Yield observed with 5.47% basket APY",
+          "USDC on aave-v3 offers highest yield at 8.05% APY"
+        ],
+        "action": [
+          "Allocate to USDC on aave-v3 for 8.05% APY",
+          "Monitor for ecosystem outflow risks",
+          "Watch for new directional signals"
+        ],
+        "risks": [
+          "Yield rates can fluctuate",
+          "Smart contract risks in DeFi protocols",
+          "Market conditions could shift rapidly"
+        ],
+        "evidence": [
+          "active_signal_count: 0",
+          "active_factors: []",
+          "best yield: USDC 8.05% APY",
+          "yield_apy: 5.47%"
+        ]
+      },
+      "source_counts": {
+        "live_signals": 5,
+        "intraday_alerts": 86,
+        "daily_days": 7
+      }
+    },
     {
       "id": "ai:20260623003651",
       "generated_at": "2026-06-23T00:36:51+00:00",
@@ -745,93 +1061,6 @@
           "yield_apy: 3.739022094322854",
           "rejected_factors: basis_premium_fade",
           "best_yield: 5.73% (Aave V3 USDC)"
-        ]
-      },
-      "source_counts": {
-        "live_signals": 5,
-        "intraday_alerts": 30,
-        "daily_days": 7
-      }
-    },
-    {
-      "id": "ai:20260614182150",
-      "generated_at": "2026-06-14T18:21:50+00:00",
-      "timestamp": "2026-06-14:18:21:50",
-      "cooldown_until": "2026-06-14T19:21:50+00:00",
-      "models": [
-        "google/gemini-2.5-flash",
-        "deepseek/deepseek-chat-v3-0324",
-        "qwen/qwen3-32b"
-      ],
-      "merge_model": "deepseek/deepseek-chat-v3-0324",
-      "report": {
-        "title": "Mantle Yield Signal Dashboard",
-        "stance": "yield",
-        "confidence": 62.0,
-        "summary": "Yield stance maintained with basis premium fade active but ecosystem risks present.",
-        "why": [
-          "No active signals today",
-          "Basis premium fade rejected (62.6 health)",
-          "3.74% yield APY"
-        ],
-        "action": [
-          "Maintain yield positions",
-          "Monitor basis premium dynamics",
-          "Watch ecosystem flows"
-        ],
-        "risks": [
-          "Elevated funding rates",
-          "TVL contraction risks",
-          "Basis premium may revert"
-        ],
-        "evidence": [
-          "current_daily.action: yield",
-          "basis_premium_fade health: 62.6",
-          "yield_apy: 3.739022094322854"
-        ]
-      },
-      "source_counts": {
-        "live_signals": 5,
-        "intraday_alerts": 30,
-        "daily_days": 7
-      }
-    },
-    {
-      "id": "ai:20260614182009",
-      "generated_at": "2026-06-14T18:20:09+00:00",
-      "timestamp": "2026-06-14:18:20:09",
-      "cooldown_until": "2026-06-14T19:20:09+00:00",
-      "models": [
-        "google/gemini-2.5-flash",
-        "deepseek/deepseek-chat-v3-0324",
-        "qwen/qwen3-32b"
-      ],
-      "merge_model": "qwen/qwen3-32b",
-      "report": {
-        "title": "Mantle (MNT) Daily Yield Signal",
-        "stance": "yield",
-        "confidence": 0.626,
-        "summary": "Mantle is currently in a yield stance. A 'basis premium fade' signal suggests perp trades are rich while funding is elevated.",
-        "why": [
-          "No active directional signals are present.",
-          "A 'basis_premium_fade' factor is rejected, indicating perp trades are rich with elevated funding.",
-          "The yield APY is 3.739% as of June 13, 2026."
-        ],
-        "action": [
-          "Maintain current yield positions.",
-          "Monitor for changes in perp market dynamics and funding rates.",
-          "No active signals suggest a directional trade."
-        ],
-        "risks": [
-          "The 'basis_premium_fade' signal, though rejected, indicates potential for yield compression.",
-          "Previous days showed 'ecosystem_outflow_risk', which could re-emerge.",
-          "MNT price momentum is slightly positive over 24h, but negative over 6h."
-        ],
-        "evidence": [
-          "current_daily.action: yield",
-          "rejected_factors[0].name: basis_premium_fade",
-          "rejected_factors[0].reason: perp trades rich while funding is elevated",
-          "yield_apy: 3.739022094322854"
         ]
       },
       "source_counts": {

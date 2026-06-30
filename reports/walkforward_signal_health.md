@@ -2,18 +2,18 @@
 
 Uses one fixed 120-day lookback. Each day only sees signal outcomes before that day.
 
-- evaluated fired-signal rows: `1671`
-- recommendation days: `954`
-- active recommendation days: `253`
+- evaluated fired-signal rows: `1689`
+- recommendation days: `969`
+- active recommendation days: `263`
 
 ## Recommendation Replay
 
 | Horizon | Active Days | Coverage | Hit Rate | Median Return | Avg Return | Worst |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| 1d | 253 | 26.52% | 55.73% | 0.46% | 0.67% | -10.23% |
-| 2d | 253 | 26.52% | 50.99% | 0.17% | 0.72% | -12.49% |
-| 3d | 253 | 26.52% | 52.38% | 0.41% | 0.87% | -25.13% |
-| 7d | 253 | 26.52% | 51.81% | 0.39% | 1.61% | -29.65% |
+| 1d | 263 | 27.14% | 56.27% | 0.49% | 0.71% | -10.23% |
+| 2d | 263 | 27.14% | 52.47% | 0.33% | 0.82% | -12.49% |
+| 3d | 263 | 27.14% | 53.05% | 0.55% | 1.00% | -25.13% |
+| 7d | 263 | 27.14% | 51.94% | 0.39% | 1.78% | -29.65% |
 
 ## Realized Outcomes After Active Fires
 
@@ -25,6 +25,7 @@ Uses one fixed 120-day lookback. Each day only sees signal outcomes before that 
 | ecosystem_growth_confirmed | 7d | 10 | 70.00% | 7.19% | 2.91% | -18.94% |
 | fee_activity_drop | 2d | 18 | 61.11% | 1.41% | 0.26% | -6.81% |
 | ecosystem_growth_confirmed | 2d | 30 | 60.00% | 1.39% | 1.30% | -9.89% |
+| ecosystem_outflow_risk | 3d | 12 | 58.33% | 0.89% | 2.79% | -7.49% |
 | basis_premium_fade | 1d | 26 | 57.69% | 0.52% | 0.32% | -7.20% |
 | oi_unwind_downtrend | 7d | 16 | 56.25% | 1.57% | 0.11% | -16.41% |
 | ecosystem_outflow_risk | 1d | 9 | 55.56% | 0.46% | -0.49% | -6.52% |
@@ -43,12 +44,11 @@ Uses one fixed 120-day lookback. Each day only sees signal outcomes before that 
 | leveraged_momentum | 2d | 1 | 100.00% | 0.97% | 0.97% | 0.97% |
 | fee_activity_lag | 7d | 4 | 75.00% | 11.32% | 7.42% | -8.86% |
 | volume_breakout | 1d | 6 | 66.67% | 4.11% | 3.55% | -3.43% |
+| oi_unwind_downtrend | 1d | 6 | 66.67% | 0.59% | -0.34% | -5.62% |
 | basis_premium_fade | 7d | 5 | 60.00% | 1.28% | -1.00% | -13.92% |
-| ecosystem_outflow_risk | 3d | 6 | 50.00% | 0.41% | -1.43% | -6.06% |
 | short_squeeze_setup | 2d | 2 | 50.00% | -0.31% | -0.31% | -1.81% |
 | basis_discount_reversion | 1d | 2 | 50.00% | -0.81% | -0.81% | -1.82% |
-| oi_unwind_downtrend | 3d | 7 | 42.86% | -2.05% | -1.34% | -6.73% |
-| deleveraged_rebound | 2d | 3 | 33.33% | -0.60% | -0.33% | -1.77% |
+| ecosystem_outflow_risk | 2d | 2 | 50.00% | -3.08% | -3.08% | -6.54% |
 
 ## Prior 120d Health Used For Decisions
 
@@ -69,13 +69,13 @@ Uses one fixed 120-day lookback. Each day only sees signal outcomes before that 
 | short_squeeze_setup | 3d | 11 | 66.50% | 4.30% | 4.69% | -8.49% | 80.10 |
 | stablecoin_inflow_momentum | 3d | 13 | 67.00% | 3.89% | 4.44% | -9.66% | 80.08 |
 | ecosystem_growth_confirmed | 3d | 3 | 65.02% | 3.78% | 3.27% | -9.70% | 78.89 |
-| ecosystem_outflow_risk | 3d | 7 | 69.42% | 2.88% | 2.56% | -6.46% | 76.46 |
 | fee_activity_drop | 3d | 12 | 72.99% | 2.55% | 2.22% | -8.78% | 76.03 |
 | leveraged_momentum | 3d | 9 | 69.29% | 4.58% | 2.95% | -8.11% | 75.78 |
 | short_squeeze_setup | 2d | 2 | 64.58% | 2.60% | 3.33% | -2.83% | 74.51 |
 | leveraged_sell_pressure | 1d | 3 | 75.00% | 2.53% | 2.36% | -4.18% | 73.70 |
-| basis_discount_reversion | 2d | 5 | 69.42% | 5.17% | 5.36% | -6.25% | 72.17 |
+| ecosystem_outflow_risk | 3d | 12 | 65.72% | 2.82% | 2.56% | -6.89% | 72.75 |
 | leveraged_momentum | 7d | 6 | 61.12% | 3.16% | 4.97% | -6.80% | 71.80 |
+| basis_discount_reversion | 2d | 6 | 67.57% | 4.85% | 4.75% | -6.72% | 70.48 |
 | oi_unwind_downtrend | 7d | 16 | 69.60% | 1.44% | 1.95% | -8.85% | 69.69 |
 | stablecoin_inflow_momentum | 2d | 19 | 66.33% | 1.45% | 2.82% | -8.28% | 68.95 |
 | fee_activity_drop | 2d | 18 | 66.43% | 1.95% | 1.17% | -8.81% | 68.95 |
@@ -83,14 +83,14 @@ Uses one fixed 120-day lookback. Each day only sees signal outcomes before that 
 | oi_unwind_downtrend | 3d | 7 | 65.40% | 1.74% | 1.09% | -7.76% | 63.79 |
 | basis_discount_reversion | 3d | 1 | 59.09% | 1.83% | 2.60% | -5.07% | 62.27 |
 | ecosystem_growth_confirmed | 2d | 30 | 67.28% | 1.40% | 1.90% | -7.34% | 60.70 |
-| oi_unwind_downtrend | 1d | 3 | 76.80% | 0.61% | 0.44% | -5.03% | 57.31 |
 | volume_breakout | 1d | 6 | 70.33% | 0.98% | 1.83% | -4.97% | 56.81 |
 | basis_premium_fade | 1d | 26 | 65.83% | 1.29% | 0.60% | -6.21% | 56.17 |
+| oi_unwind_downtrend | 1d | 6 | 72.58% | 0.67% | 0.34% | -5.32% | 56.13 |
 | short_squeeze_setup | 1d | 8 | 73.20% | 0.58% | 1.21% | -5.54% | 54.20 |
-| ecosystem_outflow_risk | 2d | 1 | 66.67% | 1.15% | 1.07% | -5.56% | 52.78 |
 | basis_premium_fade | 2d | 7 | 59.60% | 1.90% | 0.98% | -9.66% | 52.41 |
 | fee_activity_lag | 3d | 2 | 61.11% | 1.58% | 1.91% | -7.12% | 51.55 |
 | oi_unwind_downtrend | 2d | 2 | 60.15% | 1.66% | 0.85% | -5.92% | 50.96 |
+| ecosystem_outflow_risk | 2d | 2 | 64.10% | 1.20% | 0.91% | -5.94% | 49.48 |
 | fee_activity_lag | 1d | 1 | 62.50% | 0.80% | 2.67% | -4.11% | 49.27 |
 | stablecoin_inflow_momentum | 1d | 5 | 59.18% | 1.58% | 0.61% | -6.09% | 45.46 |
 | ecosystem_outflow_risk | 1d | 9 | 61.59% | 0.66% | 1.15% | -5.98% | 41.10 |
@@ -101,7 +101,7 @@ Uses one fixed 120-day lookback. Each day only sees signal outcomes before that 
 
 ## Latest Recommendation
 
-- date: `2026-06-14 00:00:00+00:00`
+- date: `2026-06-29 00:00:00+00:00`
 - action: `neutral_yield`
 - long score: `0.0`
 - short score: `0.0`

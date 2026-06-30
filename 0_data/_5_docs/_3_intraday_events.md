@@ -1,11 +1,11 @@
 # Intraday Event Coverage
 
-- generated_at: 2026-06-15T04:17:10+00:00
-- window: 2026-06-01T04:15:02+00:00 to 2026-06-15T04:15:02+00:00
-- blocks: 96078495 to 96683295
-- raw_logs: 368552
-- normalized_events: 364573
-- alerts: 1410
+- generated_at: 2026-06-30T22:06:01+00:00
+- window: 2026-06-16T22:05:00+00:00 to 2026-06-30T22:05:00+00:00
+- blocks: 96758594 to 97363394
+- raw_logs: 257568
+- normalized_events: 253261
+- alerts: 787
 - timestamp_method: linear interpolation between exact chunk boundary block timestamps
 
 ## Alert Semantics
@@ -61,25 +61,25 @@
 
 ## Token Supply
 
-- WMNT: rpc; total_supply=11715437.467523925
-- WETH: rpc; total_supply=165507.3491342782
-- mETH: rpc; total_supply=28696.96202938285
-- cmETH: rpc; total_supply=12291.801541
-- FBTC: rpc; total_supply=263.69083359
-- WBTC: rpc; total_supply=48.82785776
-- COOK: rpc; total_supply=4066360906.873912
-- USDC: rpc; total_supply=23470224.009522
-- USDT: rpc; total_supply=15108528.79356
-- USDe: rpc; total_supply=109214613.347072
-- sUSDe: rpc; total_supply=99582907.829749
-- USDY: rpc; total_supply=25898483.93017219
-- USDT0: rpc; total_supply=351627940.987933
+- WMNT: rpc; total_supply=16037343.371839037
+- WETH: rpc; total_supply=158512.72806198892
+- mETH: rpc; total_supply=28634.701684382846
+- cmETH: rpc; total_supply=10236.148653
+- FBTC: rpc; total_supply=263.68890494
+- WBTC: rpc; total_supply=48.82770076
+- COOK: rpc; total_supply=4066360450.606808
+- USDC: rpc; total_supply=25641818.45912
+- USDT: rpc; total_supply=13284299.321273
+- USDe: rpc; total_supply=78801807.135021
+- sUSDe: rpc; total_supply=143850423.8204
+- USDY: rpc; total_supply=25218092.86847119
+- USDT0: rpc; total_supply=375252488.261325
 - ABBVx: rpc; total_supply=10109.666088957134
 - GOOGLx: rpc; total_supply=10013.658871173786
 - AMZNx: rpc; total_supply=10000.0
 - AAPLx: rpc; total_supply=10012.689523588211
 - BRK.Bx: rpc; total_supply=10000.0
-- AVGOx: rpc; total_supply=10026.809947002002
+- AVGOx: rpc; total_supply=10037.900742010122
 - CVXx: rpc; total_supply=10184.84352284944
 - KOx: rpc; total_supply=10129.255589886372
 - LLYx: rpc; total_supply=10034.895712496029
@@ -95,7 +95,7 @@
 - PEPx: rpc; total_supply=10207.630905655727
 - PFEx: rpc; total_supply=240263.3179535724
 - PGx: rpc; total_supply=10100.251029399033
-- SPCXx: rpc; total_supply=150000.0
+- SPCXx: rpc; total_supply=30000.0
 - TSLAx: rpc; total_supply=10000.0
 - UNHx: rpc; total_supply=10140.692880232007
 - Vx: rpc; total_supply=10044.89302836559

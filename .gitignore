@@ -45,6 +45,10 @@ logs/
 3_app/layout/
 3_app/signal-preview/
 
+# Demo/voiceover artifacts
+docs/demo_voice.txt
+docs/demo_transcript.md
+
 # OS/editor noise
 .DS_Store
 Thumbs.db
